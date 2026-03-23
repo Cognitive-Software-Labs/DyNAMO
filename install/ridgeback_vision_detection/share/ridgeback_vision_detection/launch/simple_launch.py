@@ -1,0 +1,1 @@
+/home/pratham/vision_ws/build/ridgeback_vision_detection/launch/simple_launch.py

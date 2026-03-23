@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<sdf version="1.8">
+  <world name="test">
+    <model name="test_box">
+      <link name="base_link" />
+      <plugin filename="gz-sim-odometry-publisher-system" name="gz::sim::systems::OdometryPublisher">
+        <odom_frame>odom</odom_frame>
+        <robot_base_frame>base_link</robot_base_frame>
+      </plugin>
+    </model>
+  </world>
+</sdf>

@@ -1,0 +1,133 @@
+╔══════════════════════════════════════════════════════════════╗
+║         RIDGEBACK VISION DETECTION - QUICK REFERENCE         ║
+╚══════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────┐
+│ LAUNCH SYSTEM                                                │
+└──────────────────────────────────────────────────────────────┘
+  cd ~/vision_ws
+  ./launch_ridgeback.sh
+
+┌──────────────────────────────────────────────────────────────┐
+│ VERIFY SYSTEM                                                │
+└──────────────────────────────────────────────────────────────┘
+  cd ~/vision_ws
+  ./verify_system.sh
+
+┌──────────────────────────────────────────────────────────────┐
+│ BUILD WORKSPACE                                              │
+└──────────────────────────────────────────────────────────────┘
+  cd ~/vision_ws
+  colcon build --packages-select ridgeback_vision_detection
+  source install/setup.bash
+
+┌──────────────────────────────────────────────────────────────┐
+│ VIEW CAMERA FEED                                             │
+└──────────────────────────────────────────────────────────────┘
+  # Annotated feed with detection overlay
+  ros2 run rqt_image_view rqt_image_view /vision_detection/image_result
+  
+  # Raw camera feed
+  ros2 run rqt_image_view rqt_image_view /camera/image_raw
+
+┌──────────────────────────────────────────────────────────────┐
+│ MONITOR TOPICS                                               │
+└──────────────────────────────────────────────────────────────┘
+  # List all topics
+  ros2 topic list
+  
+  # Check camera
+  ros2 topic hz /camera/image_raw
+  
+  # Check velocity commands
+  ros2 topic echo /cmd_vel
+  
+  # Check odometry
+  ros2 topic echo /odom
+
+┌──────────────────────────────────────────────────────────────┐
+│ CHECK NODES                                                  │
+└──────────────────────────────────────────────────────────────┘
+  # List all nodes
+  ros2 node list
+  
+  # Detector node info
+  ros2 node info /vision_detector
+
+┌──────────────────────────────────────────────────────────────┐
+│ ROBOT STATES                                                 │
+└──────────────────────────────────────────────────────────────┘
+  INIT       → Warming up sensors (6 seconds)
+  SCANNING   → Rotating to find red target
+  APPROACH   → Moving toward detected target
+  OPERATING  → At target location (8 seconds)
+  RETURNING  → Navigating back to start
+  SUCCESS    → Mission complete
+
+┌──────────────────────────────────────────────────────────────┐
+│ KEY TOPICS                                                   │
+└──────────────────────────────────────────────────────────────┘
+  /camera/image_raw              → Raw camera feed
+  /vision_detection/image_result → Annotated camera feed
+  /cmd_vel                       → Velocity commands
+  /odom                          → Odometry data
+  /scan                          → LiDAR data
+  /tf                            → Transform tree
+  /map                           → SLAM map
+
+┌──────────────────────────────────────────────────────────────┐
+│ TROUBLESHOOTING                                              │
+└──────────────────────────────────────────────────────────────┘
+  # Camera not working
+  ros2 topic list | grep camera
+  gz topic -l | grep camera
+  
+  # Robot not moving
+  ros2 topic echo /cmd_vel
+  ros2 topic echo /odom
+  
+  # Clean rebuild
+  cd ~/vision_ws
+  rm -rf build/ install/ log/
+  colcon build --packages-select ridgeback_vision_detection
+
+┌──────────────────────────────────────────────────────────────┐
+│ CONFIGURATION FILES                                          │
+└──────────────────────────────────────────────────────────────┘
+  Launch:  launch/ridgeback_detection_launch.py
+  Robot:   urdf/ridgeback.urdf.xacro
+  Camera:  urdf/camera_extras.urdf.xacro
+  LiDAR:   urdf/lidar_extras.urdf.xacro
+  World:   worlds/warehouse.sdf
+  Node:    ridgeback_vision_detection/detector.py
+
+┌──────────────────────────────────────────────────────────────┐
+│ ROBOT SPECS                                                  │
+└──────────────────────────────────────────────────────────────┘
+  Platform:     Ridgeback (4-wheel differential drive)
+  Camera:       640x480 @ 10Hz, 60° FOV
+  LiDAR:        180° FOV, 12m range, 720 samples
+  Spawn Point:  (-8.0, 0.0, 0.1)
+  Target:       Red sphere at (8.0, 0.0, 0.3)
+
+┌──────────────────────────────────────────────────────────────┐
+│ DOCUMENTATION                                                │
+└──────────────────────────────────────────────────────────────┘
+  Full Guide:      src/ridgeback_vision_detection/README.md
+  Changes Summary: CHANGES_SUMMARY.md
+  This Card:       QUICK_REFERENCE.txt
+
+┌──────────────────────────────────────────────────────────────┐
+│ EMERGENCY STOP                                               │
+└──────────────────────────────────────────────────────────────┘
+  Ctrl+C in terminal running launch script
+  
+  # Kill all ROS nodes
+  killall -9 ros2
+  
+  # Kill Gazebo
+  killall -9 gz
+
+╔══════════════════════════════════════════════════════════════╗
+║  For detailed help, see README.md or CHANGES_SUMMARY.md      ║
+╚══════════════════════════════════════════════════════════════╝

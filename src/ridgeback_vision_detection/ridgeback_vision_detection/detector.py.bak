@@ -1,0 +1,544 @@
+#!/usr/bin/env python3
+"""
+Hospital Mission Controller
+============================
+State machine:
+  INIT           – wait for Nav2 and odom
+  SEARCH_ROTATE  – rotate 360° in place scanning for sphere
+  SEARCH_MOVE    – Nav2 moves robot ~2m forward, then rotates again
+  NAVIGATE       – Nav2 navigates to safe distance from sphere
+  WAIT           – wait 10 seconds at the sphere
+  RETURN         – Nav2 returns to starting position
+  DONE           – mission complete
+"""
+
+import rclpy
+from rclpy.node import Node
+from rclpy.action import ActionClient
+from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
+
+from nav2_msgs.action import NavigateToPose
+from geometry_msgs.msg import Twist, Quaternion
+from sensor_msgs.msg import Image
+from nav_msgs.msg import Odometry
+from cv_bridge import CvBridge
+
+import cv2
+import numpy as np
+import math
+import time
+
+
+class HospitalMission(Node):
+
+    # ── Tuning ────────────────────────────────────────────────────
+    SAFE_DISTANCE     = 1.5       # metres – stop this far from sphere
+    SEARCH_YAW_SPEED  = 0.5       # rad/s – rotation speed while scanning
+    MOVE_DISTANCE     = 2.0       # metres – how far to advance between scans
+    MIN_DETECT_AREA   = 60        # px² – minimum red blob to count
+    WAIT_SECONDS      = 10.0      # seconds to wait at sphere
+    SPHERE_RADIUS_M   = 0.3       # physical sphere radius
+    CAMERA_HFOV_RAD   = 1.047     # horizontal FOV
+    IMAGE_WIDTH       = 640
+    CONFIRM_FRAMES    = 5         # consecutive detections before trusting
+    MAX_SEARCH_MOVES  = 8         # max forward moves before giving up
+
+    def __init__(self):
+        super().__init__('hospital_mission')
+
+        # ── Nav2 action client ────────────────────────────────────
+        self.nav_client = ActionClient(self, NavigateToPose, 'navigate_to_pose')
+
+        # ── Publishers ────────────────────────────────────────────
+        self.cmd_pub    = self.create_publisher(Twist, '/cmd_vel', 10)
+        self.result_pub = self.create_publisher(Image, '/vision_detection/image_result', 10)
+
+        # ── Subscribers ───────────────────────────────────────────
+        cam_qos = QoSProfile(
+            reliability=ReliabilityPolicy.BEST_EFFORT,
+            history=HistoryPolicy.KEEP_LAST, depth=5)
+        self.create_subscription(Image, '/camera/image_raw',
+                                 self.image_callback, cam_qos)
+        self.create_subscription(Odometry, '/odom',
+                                 self.odom_callback, 10)
+
+        # ── State ─────────────────────────────────────────────────
+        self.bridge        = CvBridge()
+        self.state         = 'INIT'
+        self.start_pose    = None
+        self.robot_x       = 0.0
+        self.robot_y       = 0.0
+        self.robot_yaw     = 0.0
+        self.odom_received = False
+
+        # Search
+        self.search_start_yaw    = None
+        self.search_accumulated  = 0.0
+        self.search_last_yaw     = None
+        self.search_move_count   = 0
+
+        # Detection
+        self.sphere_detected   = False
+        self.sphere_world_x    = None
+        self.sphere_world_y    = None
+        self.confirm_count     = 0
+        self.detect_distances  = []
+        self.detect_bearings   = []
+
+        # Navigation
+        self.nav_goal_sent     = False
+        self.nav_goal_done     = False
+        self.nav_goal_success  = False
+        self._nav_goal_x       = 0.0
+        self._nav_goal_y       = 0.0
+        self._nav_goal_yaw     = 0.0
+
+        # Wait
+        self.wait_start_time   = None
+
+        # Init tracking
+        self.init_start_time   = time.time()
+        self.init_log_counter  = 0
+        self.nav2_ready        = False
+
+        # Timer for state machine (10 Hz)
+        self.create_timer(0.1, self.state_machine_tick)
+        self.get_logger().info('🏥 Hospital Mission Controller started')
+
+    # ── Helpers ────────────────────────────────────────────────────
+    @staticmethod
+    def quat_to_yaw(q):
+        siny = 2.0 * (q.w * q.z + q.x * q.y)
+        cosy = 1.0 - 2.0 * (q.y * q.y + q.z * q.z)
+        return math.atan2(siny, cosy)
+
+    @staticmethod
+    def yaw_to_quat(yaw):
+        q = Quaternion()
+        q.w = math.cos(yaw / 2.0)
+        q.z = math.sin(yaw / 2.0)
+        q.x = 0.0
+        q.y = 0.0
+        return q
+
+    @staticmethod
+    def normalize_angle(a):
+        """Normalize angle to [-pi, pi]."""
+        return math.atan2(math.sin(a), math.cos(a))
+
+    def _estimate_distance(self, pixel_diameter):
+        if pixel_diameter <= 0:
+            return float('inf')
+        focal_px = (self.IMAGE_WIDTH / 2.0) / math.tan(self.CAMERA_HFOV_RAD / 2.0)
+        return (2.0 * self.SPHERE_RADIUS_M * focal_px) / pixel_diameter
+
+    # ── Odom callback ─────────────────────────────────────────────
+    def odom_callback(self, msg):
+        self.robot_x   = msg.pose.pose.position.x
+        self.robot_y   = msg.pose.pose.position.y
+        self.robot_yaw = self.quat_to_yaw(msg.pose.pose.orientation)
+        self.odom_received = True
+        if self.start_pose is None:
+            self.start_pose = (self.robot_x, self.robot_y, self.robot_yaw)
+            self.get_logger().info(
+                f'📍 Start pose saved: ({self.robot_x:.2f}, {self.robot_y:.2f})')
+
+    # ── Image callback (detection only) ───────────────────────────
+    def image_callback(self, msg):
+        frame = self.bridge.imgmsg_to_cv2(msg, 'bgr8')
+        h_img, w_img = frame.shape[:2]
+
+        # ── HSV red detection ──────────────────────────────────
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        lower1, upper1 = np.array([0, 80, 50]),   np.array([10, 255, 255])
+        lower2, upper2 = np.array([160, 80, 50]),  np.array([180, 255, 255])
+        mask = cv2.inRange(hsv, lower1, upper1) | cv2.inRange(hsv, lower2, upper2)
+
+        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
+        mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN,  kernel, iterations=1)
+        mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=2)
+
+        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL,
+                                       cv2.CHAIN_APPROX_SIMPLE)
+
+        detected_this_frame = False
+        est_dist = float('inf')
+        bearing  = 0.0
+
+        if contours:
+            biggest = max(contours, key=cv2.contourArea)
+            area = cv2.contourArea(biggest)
+
+            if area > self.MIN_DETECT_AREA:
+                detected_this_frame = True
+                x, y, w, h = cv2.boundingRect(biggest)
+                cx = x + w // 2
+
+                (mcx, mcy), mradius = cv2.minEnclosingCircle(biggest)
+                est_dist = self._estimate_distance(2.0 * mradius)
+
+                # Bearing from image center (positive = left of center)
+                focal_px = (self.IMAGE_WIDTH / 2.0) / math.tan(self.CAMERA_HFOV_RAD / 2.0)
+                pixel_error = (w_img // 2) - cx
+                bearing = math.atan2(pixel_error, focal_px)
+
+                # Draw on frame
+                cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+                cv2.circle(frame, (int(mcx), int(mcy)), int(mradius),
+                           (0, 255, 255), 2)
+                cv2.drawMarker(frame, (cx, y + h//2), (0, 0, 255),
+                               cv2.MARKER_CROSS, 20, 2)
+                cv2.putText(frame, f'SPHERE d={est_dist:.1f}m',
+                            (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX,
+                            0.55, (0, 255, 0), 2)
+
+        # ── Accumulate detections during SEARCH_ROTATE ────────
+        if self.state == 'SEARCH_ROTATE' and detected_this_frame and self.odom_received:
+            self.confirm_count += 1
+            self.detect_distances.append(est_dist)
+            self.detect_bearings.append(bearing)
+
+            if self.confirm_count >= self.CONFIRM_FRAMES:
+                # Average the measurements
+                avg_dist    = float(np.median(self.detect_distances))
+                avg_bearing = float(np.median(self.detect_bearings))
+
+                # Compute sphere world position
+                world_angle = self.robot_yaw + avg_bearing
+                self.sphere_world_x = self.robot_x + avg_dist * math.cos(world_angle)
+                self.sphere_world_y = self.robot_y + avg_dist * math.sin(world_angle)
+                self.sphere_detected = True
+
+                self.get_logger().info(
+                    f'🎯 Sphere confirmed at world ({self.sphere_world_x:.2f}, '
+                    f'{self.sphere_world_y:.2f}), dist={avg_dist:.1f}m')
+        elif self.state == 'SEARCH_ROTATE' and not detected_this_frame:
+            self.confirm_count = 0
+            self.detect_distances.clear()
+            self.detect_bearings.clear()
+
+        # ── HUD ────────────────────────────────────────────────
+        state_colors = {
+            'INIT':          (128, 128, 128),
+            'SEARCH_ROTATE': (0, 165, 255),
+            'SEARCH_MOVE':   (0, 200, 200),
+            'NAVIGATE':      (255, 200, 0),
+            'WAIT':          (0, 200, 255),
+            'RETURN':        (255, 100, 255),
+            'DONE':          (0, 255, 0),
+        }
+        col = state_colors.get(self.state, (255, 255, 255))
+        cv2.putText(frame, f'STATE: {self.state}', (20, 35),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, col, 2)
+
+        info_lines = []
+        if self.state == 'INIT':
+            elapsed = time.time() - self.init_start_time
+            if not self.odom_received:
+                info_lines.append(f'Waiting for odom... ({elapsed:.0f}s)')
+            else:
+                info_lines.append(f'Waiting for Nav2... ({elapsed:.0f}s)')
+        elif self.state == 'SEARCH_ROTATE':
+            deg = abs(self.search_accumulated) * 180.0 / math.pi
+            info_lines.append(f'Rotating... {deg:.0f}/360 deg')
+            info_lines.append(f'confirms={self.confirm_count}/{self.CONFIRM_FRAMES}')
+            info_lines.append(f'Search attempt {self.search_move_count + 1}/{self.MAX_SEARCH_MOVES}')
+        elif self.state == 'SEARCH_MOVE':
+            info_lines.append(f'Moving to next search position...')
+            info_lines.append(f'Attempt {self.search_move_count}/{self.MAX_SEARCH_MOVES}')
+        elif self.state == 'NAVIGATE':
+            if self.sphere_world_x is not None:
+                info_lines.append(f'Nav to sphere ({self.sphere_world_x:.1f}, {self.sphere_world_y:.1f})')
+        elif self.state == 'WAIT':
+            if self.wait_start_time:
+                elapsed = time.time() - self.wait_start_time
+                remaining = max(0, self.WAIT_SECONDS - elapsed)
+                info_lines.append(f'Waiting... {remaining:.1f}s remaining')
+        elif self.state == 'RETURN':
+            if self.start_pose:
+                info_lines.append(f'Returning to ({self.start_pose[0]:.1f}, {self.start_pose[1]:.1f})')
+        elif self.state == 'DONE':
+            info_lines.append('Mission complete!')
+
+        for i, line in enumerate(info_lines):
+            cv2.putText(frame, line, (20, 60 + i * 22),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.45, (255, 255, 255), 1)
+
+        # Centre line
+        cv2.line(frame, (w_img // 2, 0), (w_img // 2, h_img),
+                 (100, 100, 100), 1)
+
+        self.result_pub.publish(
+            self.bridge.cv2_to_imgmsg(frame, encoding='bgr8'))
+
+    # ── Send Nav2 goal ────────────────────────────────────────────
+    def send_nav_goal(self, x, y, yaw=0.0):
+        goal = NavigateToPose.Goal()
+        goal.pose.header.frame_id = 'map'
+        goal.pose.header.stamp = self.get_clock().now().to_msg()
+        goal.pose.pose.position.x = float(x)
+        goal.pose.pose.position.y = float(y)
+        goal.pose.pose.position.z = 0.0
+        goal.pose.pose.orientation = self.yaw_to_quat(yaw)
+
+        self.nav_goal_done    = False
+        self.nav_goal_success = False
+        self.nav_goal_sent    = True
+
+        self.get_logger().info(f'📤 Sending Nav2 goal -> ({x:.2f}, {y:.2f})')
+        send_future = self.nav_client.send_goal_async(goal)
+        send_future.add_done_callback(self._goal_response_cb)
+
+    def _goal_response_cb(self, future):
+        goal_handle = future.result()
+        if not goal_handle.accepted:
+            self.get_logger().warn('❌ Nav2 goal REJECTED')
+            self.nav_goal_done = True
+            self.nav_goal_success = False
+            return
+        self.get_logger().info('✅ Nav2 goal accepted')
+        result_future = goal_handle.get_result_async()
+        result_future.add_done_callback(self._goal_result_cb)
+
+    def _goal_result_cb(self, future):
+        self.nav_goal_done = True
+        self.nav_goal_success = True
+        self.get_logger().info('🏁 Nav2 navigation finished!')
+
+    # ── Begin a new 360° rotation search ──────────────────────────
+    def begin_search_rotate(self):
+        self.state = 'SEARCH_ROTATE'
+        self.search_start_yaw   = self.robot_yaw
+        self.search_last_yaw    = self.robot_yaw
+        self.search_accumulated = 0.0
+        self.sphere_detected    = False
+        self.confirm_count      = 0
+        self.detect_distances.clear()
+        self.detect_bearings.clear()
+        self.get_logger().info(
+            f'🔍 Starting 360° scan at ({self.robot_x:.2f}, {self.robot_y:.2f}), '
+            f'attempt {self.search_move_count + 1}')
+
+    # ── Main state machine (10 Hz timer) ──────────────────────────
+    def state_machine_tick(self):
+        cmd = Twist()
+
+        # ── INIT: wait for Nav2 + odom ────────────────────────
+        if self.state == 'INIT':
+            self.init_log_counter += 1
+            elapsed = time.time() - self.init_start_time
+
+            if not self.odom_received:
+                if self.init_log_counter % 30 == 0:
+                    self.get_logger().info(
+                        f'⏳ INIT: Waiting for odometry... ({elapsed:.0f}s)')
+                return
+
+            if not self.nav2_ready:
+                if self.nav_client.wait_for_server(timeout_sec=0.5):
+                    self.nav2_ready = True
+                    self.get_logger().info('✅ Nav2 action server is available!')
+                else:
+                    if self.init_log_counter % 20 == 0:
+                        self.get_logger().info(
+                            f'⏳ INIT: Waiting for Nav2... ({elapsed:.0f}s)')
+                    if elapsed > 90.0:
+                        self.get_logger().warn(
+                            '⚠️ Nav2 not available after 90s. Using direct control.')
+                        self.nav2_ready = False
+                        self.begin_search_rotate()
+                    return
+
+            self.begin_search_rotate()
+            return
+
+        # ── SEARCH_ROTATE: rotate 360° in place ──────────────
+        if self.state == 'SEARCH_ROTATE':
+            if self.sphere_detected:
+                # Stop and transition to NAVIGATE
+                cmd.angular.z = 0.0
+                cmd.linear.x  = 0.0
+                self.cmd_pub.publish(cmd)
+
+                dx = self.sphere_world_x - self.robot_x
+                dy = self.sphere_world_y - self.robot_y
+                angle_to_sphere = math.atan2(dy, dx)
+                dist_to_sphere  = math.hypot(dx, dy)
+                goal_dist = max(0.5, dist_to_sphere - self.SAFE_DISTANCE)
+                goal_x = self.robot_x + goal_dist * math.cos(angle_to_sphere)
+                goal_y = self.robot_y + goal_dist * math.sin(angle_to_sphere)
+
+                self.get_logger().info(
+                    f'🧭 Nav goal: ({goal_x:.2f}, {goal_y:.2f}), '
+                    f'{self.SAFE_DISTANCE}m safe dist from sphere')
+                self.state = 'NAVIGATE'
+                self.nav_goal_sent = False
+                self._nav_goal_x = goal_x
+                self._nav_goal_y = goal_y
+                self._nav_goal_yaw = angle_to_sphere
+                return
+
+            # Track yaw accumulation for full 360°
+            if self.search_last_yaw is not None:
+                delta = self.normalize_angle(self.robot_yaw - self.search_last_yaw)
+                self.search_accumulated += delta
+            self.search_last_yaw = self.robot_yaw
+
+            if abs(self.search_accumulated) >= 2.0 * math.pi:
+                # Completed full 360° — sphere not found here
+                cmd.angular.z = 0.0
+                self.cmd_pub.publish(cmd)
+                self.get_logger().info(
+                    '🔄 360° scan complete – sphere not found at this position')
+
+                self.search_move_count += 1
+                if self.search_move_count >= self.MAX_SEARCH_MOVES:
+                    self.get_logger().warn('❌ Max search attempts reached. Stopping.')
+                    self.state = 'DONE'
+                    return
+
+                # Move forward to next search position
+                self.state = 'SEARCH_MOVE'
+                self.nav_goal_sent = False
+                self.nav_goal_done = False
+
+                # Move forward by MOVE_DISTANCE in current facing direction
+                move_yaw = self.robot_yaw
+                next_x = self.robot_x + self.MOVE_DISTANCE * math.cos(move_yaw)
+                next_y = self.robot_y + self.MOVE_DISTANCE * math.sin(move_yaw)
+                self._nav_goal_x = next_x
+                self._nav_goal_y = next_y
+                self._nav_goal_yaw = move_yaw
+
+                self.get_logger().info(
+                    f'🚶 Moving to next search pos ({next_x:.2f}, {next_y:.2f})')
+                return
+
+            # Keep rotating
+            cmd.angular.z = self.SEARCH_YAW_SPEED
+            self.cmd_pub.publish(cmd)
+            return
+
+        # ── SEARCH_MOVE: Nav2 moves to next search position ──
+        if self.state == 'SEARCH_MOVE':
+            if self.nav2_ready:
+                if not self.nav_goal_sent:
+                    self.send_nav_goal(self._nav_goal_x, self._nav_goal_y,
+                                       self._nav_goal_yaw)
+                if self.nav_goal_done:
+                    self.get_logger().info('✅ Arrived at new search position')
+                    self.begin_search_rotate()
+            else:
+                # Fallback: drive directly
+                dx = self._nav_goal_x - self.robot_x
+                dy = self._nav_goal_y - self.robot_y
+                dist = math.hypot(dx, dy)
+                angle_to_goal = math.atan2(dy, dx)
+                angle_error = self.normalize_angle(angle_to_goal - self.robot_yaw)
+
+                if dist < 0.3:
+                    cmd.linear.x = 0.0
+                    cmd.angular.z = 0.0
+                    self.cmd_pub.publish(cmd)
+                    self.begin_search_rotate()
+                elif abs(angle_error) > 0.3:
+                    cmd.angular.z = 0.5 * (1.0 if angle_error > 0 else -1.0)
+                    self.cmd_pub.publish(cmd)
+                else:
+                    cmd.linear.x = min(0.3, dist * 0.5)
+                    cmd.angular.z = angle_error * 0.8
+                    self.cmd_pub.publish(cmd)
+            return
+
+        # ── NAVIGATE: go to sphere ────────────────────────────
+        if self.state == 'NAVIGATE':
+            if self.nav2_ready:
+                if not self.nav_goal_sent:
+                    self.send_nav_goal(self._nav_goal_x, self._nav_goal_y,
+                                       self._nav_goal_yaw)
+                if self.nav_goal_done:
+                    self.state = 'WAIT'
+                    self.wait_start_time = None
+                    self.get_logger().info(
+                        f'⏱️  Arrived near sphere – waiting {self.WAIT_SECONDS}s')
+            else:
+                dx = self._nav_goal_x - self.robot_x
+                dy = self._nav_goal_y - self.robot_y
+                dist = math.hypot(dx, dy)
+                angle_to_goal = math.atan2(dy, dx)
+                angle_error = self.normalize_angle(angle_to_goal - self.robot_yaw)
+
+                if dist < 0.5:
+                    cmd.linear.x = 0.0
+                    cmd.angular.z = 0.0
+                    self.cmd_pub.publish(cmd)
+                    self.state = 'WAIT'
+                    self.wait_start_time = None
+                    self.get_logger().info(
+                        f'⏱️  Arrived near sphere (direct) – waiting {self.WAIT_SECONDS}s')
+                elif abs(angle_error) > 0.3:
+                    cmd.angular.z = 0.5 * (1.0 if angle_error > 0 else -1.0)
+                    self.cmd_pub.publish(cmd)
+                else:
+                    cmd.linear.x = min(0.3, dist * 0.5)
+                    cmd.angular.z = angle_error * 0.8
+                    self.cmd_pub.publish(cmd)
+            return
+
+        # ── WAIT: wait 10 seconds ─────────────────────────────
+        if self.state == 'WAIT':
+            self.cmd_pub.publish(cmd)  # stop
+            if self.wait_start_time is None:
+                self.wait_start_time = time.time()
+            elapsed = time.time() - self.wait_start_time
+            if elapsed >= self.WAIT_SECONDS:
+                self.state = 'RETURN'
+                self.nav_goal_sent = False
+                self.get_logger().info('🔙 Wait complete – returning to start')
+            return
+
+        # ── RETURN: Nav2 drives back to start ─────────────────
+        if self.state == 'RETURN':
+            sx, sy, syaw = self.start_pose
+            if self.nav2_ready:
+                if not self.nav_goal_sent:
+                    self.send_nav_goal(sx, sy, syaw)
+                if self.nav_goal_done:
+                    self.state = 'DONE'
+                    self.get_logger().info('✅ Mission complete! Robot is home.')
+            else:
+                dx = sx - self.robot_x
+                dy = sy - self.robot_y
+                dist = math.hypot(dx, dy)
+                angle_to_goal = math.atan2(dy, dx)
+                angle_error = self.normalize_angle(angle_to_goal - self.robot_yaw)
+
+                if dist < 0.5:
+                    self.cmd_pub.publish(cmd)
+                    self.state = 'DONE'
+                    self.get_logger().info('✅ Mission complete! Robot is home.')
+                elif abs(angle_error) > 0.3:
+                    cmd.angular.z = 0.5 * (1.0 if angle_error > 0 else -1.0)
+                    self.cmd_pub.publish(cmd)
+                else:
+                    cmd.linear.x = min(0.3, dist * 0.5)
+                    cmd.angular.z = angle_error * 0.8
+                    self.cmd_pub.publish(cmd)
+            return
+
+        # ── DONE: stop ────────────────────────────────────────
+        if self.state == 'DONE':
+            self.cmd_pub.publish(cmd)
+            return
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = HospitalMission()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()

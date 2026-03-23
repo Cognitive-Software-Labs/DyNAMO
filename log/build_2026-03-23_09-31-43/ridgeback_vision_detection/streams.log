@@ -1,0 +1,73 @@
+[0.619s] Invoking command in '/home/pratham/vision_ws/build/ridgeback_vision_detection': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/pratham/vision_ws/build/ridgeback_vision_detection/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/pratham/vision_ws/install/ridgeback_vision_detection/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/pratham/vision_ws/build/ridgeback_vision_detection/build --no-deps symlink_data
+[0.861s] running develop
+[1.025s] running egg_info
+[1.025s] creating ridgeback_vision_detection.egg-info
+[1.040s] writing ridgeback_vision_detection.egg-info/PKG-INFO
+[1.041s] writing dependency_links to ridgeback_vision_detection.egg-info/dependency_links.txt
+[1.041s] writing entry points to ridgeback_vision_detection.egg-info/entry_points.txt
+[1.041s] writing requirements to ridgeback_vision_detection.egg-info/requires.txt
+[1.041s] writing top-level names to ridgeback_vision_detection.egg-info/top_level.txt
+[1.041s] writing manifest file 'ridgeback_vision_detection.egg-info/SOURCES.txt'
+[1.071s] reading manifest file 'ridgeback_vision_detection.egg-info/SOURCES.txt'
+[1.072s] writing manifest file 'ridgeback_vision_detection.egg-info/SOURCES.txt'
+[1.088s] running build_ext
+[1.088s] Creating /home/pratham/vision_ws/install/ridgeback_vision_detection/lib/python3.12/site-packages/ridgeback-vision-detection.egg-link (link to .)
+[1.089s] Installing detector script to /home/pratham/vision_ws/install/ridgeback_vision_detection/lib/ridgeback_vision_detection
+[1.089s] Installing odom_tf_pub script to /home/pratham/vision_ws/install/ridgeback_vision_detection/lib/ridgeback_vision_detection
+[1.089s] Installing test_pub script to /home/pratham/vision_ws/install/ridgeback_vision_detection/lib/ridgeback_vision_detection
+[1.089s] 
+[1.090s] Installed /home/pratham/vision_ws/build/ridgeback_vision_detection
+[1.090s] running symlink_data
+[1.090s] creating /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ament_index
+[1.090s] creating /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ament_index/resource_index
+[1.090s] creating /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ament_index/resource_index/packages
+[1.090s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/resource/ridgeback_vision_detection -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ament_index/resource_index/packages
+[1.090s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/package.xml -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection
+[1.090s] creating /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/launch
+[1.090s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/launch/simple_launch.py -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/launch
+[1.091s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/launch/ridgeback_detection_launch.py -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/launch
+[1.091s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/launch/detection_launch.py -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/launch
+[1.091s] creating /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/models
+[1.091s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/models/red_sphere.sdf -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/models
+[1.091s] creating /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/urdf
+[1.091s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/urdf/ridgeback.urdf.xacro -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/urdf
+[1.091s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/urdf/lidar_extras.urdf.xacro -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/urdf
+[1.091s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/urdf/ridgeback.gazebo -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/urdf
+[1.091s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/urdf/accessories.urdf.xacro -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/urdf
+[1.091s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/urdf/empty.urdf -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/urdf
+[1.091s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/urdf/camera_extras.urdf.xacro -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/urdf
+[1.092s] creating /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/urdf/accessories
+[1.092s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/urdf/accessories/hokuyo_ust-10lx_mount.urdf.xacro -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/urdf/accessories
+[1.092s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/urdf/accessories/microstrain_imu.urdf.xacro -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/urdf/accessories
+[1.092s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/urdf/accessories/sick_s300_mount.urdf.xacro -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/urdf/accessories
+[1.092s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/urdf/accessories/sick_lms1xx_mount.urdf.xacro -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/urdf/accessories
+[1.092s] creating /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/urdf/configs
+[1.092s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/urdf/configs/base_sick -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/urdf/configs
+[1.092s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/urdf/configs/base -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/urdf/configs
+[1.092s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/urdf/configs/dual_sick_lasers -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/urdf/configs
+[1.092s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/urdf/configs/empty -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/urdf/configs
+[1.092s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/urdf/configs/dual_hokuyo_lasers -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/urdf/configs
+[1.092s] creating /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/meshes
+[1.092s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/meshes/ust-10lx.stl -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/meshes
+[1.092s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/meshes/top.stl -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/meshes
+[1.092s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/meshes/axle.stl -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/meshes
+[1.093s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/meshes/body-collision.stl -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/meshes
+[1.093s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/meshes/rocker.stl -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/meshes
+[1.093s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/meshes/wheel.stl -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/meshes
+[1.093s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/meshes/body.stl -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/meshes
+[1.093s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/meshes/lights.stl -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/meshes
+[1.093s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/meshes/side-cover.stl -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/meshes
+[1.093s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/meshes/end-cover.stl -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/meshes
+[1.093s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/meshes/3dm-gxX.stl -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/meshes
+[1.093s] creating /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/worlds
+[1.093s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/worlds/hospital.sdf -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/worlds
+[1.093s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/worlds/warehouse.sdf -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/worlds
+[1.093s] creating /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/materials
+[1.093s] creating /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/materials/textures
+[1.093s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/materials/textures/floor.png -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/materials/textures
+[1.093s] creating /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/config
+[1.093s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/config/nav2_params.yaml -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/config
+[1.093s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/config/slam_params.yaml -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/config
+[1.093s] creating /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/rviz
+[1.093s] symbolically linking /home/pratham/vision_ws/build/ridgeback_vision_detection/rviz/nav2_view.rviz -> /home/pratham/vision_ws/install/ridgeback_vision_detection/share/ridgeback_vision_detection/rviz
+[1.120s] Invoked command in '/home/pratham/vision_ws/build/ridgeback_vision_detection' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/pratham/vision_ws/build/ridgeback_vision_detection/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/pratham/vision_ws/install/ridgeback_vision_detection/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/pratham/vision_ws/build/ridgeback_vision_detection/build --no-deps symlink_data
