@@ -63,6 +63,26 @@ Visualization Manager:
       Autocompute Intensity Bounds: true
       Color Transformer: FlatColor
 
+    - Class: rviz_default_plugins/LaserScan
+      Name: LaserScanRear
+      Enabled: true
+      Value: true
+      Topic:
+        Value: /scan_rear
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+      Color: 255; 140; 0
+      Size (m): 0.05
+      Style: Flat Squares
+      Alpha: 1
+      Decay Time: 0
+      Min Color: 255; 140; 0
+      Max Color: 255; 255; 255
+      Autocompute Intensity Bounds: true
+      Color Transformer: FlatColor
+
     - Class: rviz_default_plugins/Map
       Name: Map
       Enabled: true

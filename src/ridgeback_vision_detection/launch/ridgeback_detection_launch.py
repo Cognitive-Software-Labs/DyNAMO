@@ -91,13 +91,13 @@ def generate_launch_description():
 
             # lidar
             '/scan@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan',
+            '/scan_rear@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan',
 
             # clock
             '/clock@rosgraph_msgs/msg/Clock@gz.msgs.Clock',
 
-            # camera (IMPORTANT: Use actual Gazebo topic)
-            '/world/warehouse/model/ridgeback/link/camera_link/sensor/camera/image'
-            '@sensor_msgs/msg/Image@gz.msgs.Image'
+            # camera
+            '/camera_d455/image_raw@sensor_msgs/msg/Image@gz.msgs.Image'
         ],
         parameters=[{'use_sim_time': True}],
         output='screen'

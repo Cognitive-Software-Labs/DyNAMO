@@ -27,8 +27,8 @@
 
     <physics name="default_physics" type="ode">
       <max_step_size>0.002</max_step_size>
-      <real_time_factor>1.0</real_time_factor>
-      <real_time_update_rate>500</real_time_update_rate>
+      <real_time_factor>2.0</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
     </physics>
 
     <light type="directional" name="sun">
@@ -99,10 +99,6 @@
       <link name="link"><collision name="c"><geometry><box><size>8.2 0.2 2.8</size></box></geometry></collision>
       <visual name="v"><geometry><box><size>8.2 0.2 2.8</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual></link>
     </model>
-    <model name="north_seg_2"><static>true</static><pose>7.0 1.6 1.4 0 0 0</pose>
-      <link name="link"><collision name="c"><geometry><box><size>3.4 0.2 2.8</size></box></geometry></collision>
-      <visual name="v"><geometry><box><size>3.4 0.2 2.8</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual></link>
-    </model>
     <model name="north_seg_3"><static>true</static><pose>13.6 1.6 1.4 0 0 0</pose>
       <link name="link"><collision name="c"><geometry><box><size>4.8 0.2 2.8</size></box></geometry></collision>
       <visual name="v"><geometry><box><size>4.8 0.2 2.8</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual></link>
@@ -113,24 +109,12 @@
       <link name="link"><collision name="c"><geometry><box><size>8.2 0.2 2.8</size></box></geometry></collision>
       <visual name="v"><geometry><box><size>8.2 0.2 2.8</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual></link>
     </model>
-    <model name="south_seg_2"><static>true</static><pose>7.0 -1.6 1.4 0 0 0</pose>
-      <link name="link"><collision name="c"><geometry><box><size>3.4 0.2 2.8</size></box></geometry></collision>
-      <visual name="v"><geometry><box><size>3.4 0.2 2.8</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual></link>
-    </model>
     <model name="south_seg_3"><static>true</static><pose>13.6 -1.6 1.4 0 0 0</pose>
       <link name="link"><collision name="c"><geometry><box><size>4.8 0.2 2.8</size></box></geometry></collision>
       <visual name="v"><geometry><box><size>4.8 0.2 2.8</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual></link>
     </model>
 
-    <!-- Room separators -->
-    <model name="north_divider"><static>true</static><pose>7 4.8 1.4 0 0 0</pose>
-      <link name="link"><collision name="c"><geometry><box><size>0.2 6.4 2.8</size></box></geometry></collision>
-      <visual name="v"><geometry><box><size>0.2 6.4 2.8</size></box></geometry><material><ambient>0.99 0.99 0.99 1</ambient><diffuse>0.99 0.99 0.99 1</diffuse></material></visual></link>
-    </model>
-    <model name="south_divider"><static>true</static><pose>7 -4.8 1.4 0 0 0</pose>
-      <link name="link"><collision name="c"><geometry><box><size>0.2 6.4 2.8</size></box></geometry></collision>
-      <visual name="v"><geometry><box><size>0.2 6.4 2.8</size></box></geometry><material><ambient>0.99 0.99 0.99 1</ambient><diffuse>0.99 0.99 0.99 1</diffuse></material></visual></link>
-    </model>
+    <!-- Room separators removed to merge 4 rooms into 2 larger rooms -->
 
     <!-- Basic hospital furniture (visual realism) -->
     <model name="bed_n1"><static>true</static><pose>4.0 5.8 0.25 0 0 0</pose>
@@ -162,6 +146,42 @@
       <link name="link">
         <collision name="c"><geometry><box><size>1.8 0.6 0.9</size></box></geometry></collision>
         <visual name="v"><geometry><box><size>1.8 0.6 0.9</size></box></geometry><material><ambient>0.72 0.74 0.77 1</ambient><diffuse>0.72 0.74 0.77 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <!-- Additional objects in larger rooms -->
+    <model name="supply_cart_north"><static>true</static><pose>1.8 4.8 0.4 0 0 0.3</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>1.1 0.7 0.8</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>1.1 0.7 0.8</size></box></geometry><material><ambient>0.65 0.70 0.76 1</ambient><diffuse>0.65 0.70 0.76 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <model name="cabinet_north"><static>true</static><pose>13.4 6.6 0.65 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>1.4 0.5 1.3</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>1.4 0.5 1.3</size></box></geometry><material><ambient>0.82 0.84 0.88 1</ambient><diffuse>0.82 0.84 0.88 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <model name="waiting_chair_south_1"><static>true</static><pose>2.8 -4.6 0.25 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>0.6 0.6 0.5</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.6 0.6 0.5</size></box></geometry><material><ambient>0.42 0.54 0.66 1</ambient><diffuse>0.42 0.54 0.66 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <model name="waiting_chair_south_2"><static>true</static><pose>3.7 -4.6 0.25 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>0.6 0.6 0.5</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.6 0.6 0.5</size></box></geometry><material><ambient>0.42 0.54 0.66 1</ambient><diffuse>0.42 0.54 0.66 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <model name="oxygen_tank_south"><static>true</static><pose>12.8 -6.0 0.55 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><cylinder><radius>0.16</radius><length>1.1</length></cylinder></geometry></collision>
+        <visual name="v"><geometry><cylinder><radius>0.16</radius><length>1.1</length></cylinder></geometry><material><ambient>0.32 0.55 0.74 1</ambient><diffuse>0.32 0.55 0.74 1</diffuse></material></visual>
       </link>
     </model>
 

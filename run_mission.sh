@@ -119,19 +119,20 @@ ros2 run ros_gz_bridge parameter_bridge \
     /odom@nav_msgs/msg/Odometry[gz.msgs.Odometry \
     /tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V \
     /scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan \
+    /scan_rear@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan \
     /clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock \
     /joint_states@sensor_msgs/msg/JointState[gz.msgs.Model \
     /imu@sensor_msgs/msg/Imu[gz.msgs.IMU \
-    '/camera_sensor/image_raw@sensor_msgs/msg/Image[gz.msgs.Image' \
-    '/camera_sensor/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo' \
+    '/camera_d455/image_raw@sensor_msgs/msg/Image[gz.msgs.Image' \
+    '/camera_d455/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo' \
     --ros-args -p use_sim_time:=true \
-    -r /camera_sensor/image_raw:=/camera/image_raw \
-    -r /camera_sensor/camera_info:=/camera/camera_info \
+    -r /camera_d455/image_raw:=/camera/image_raw \
+    -r /camera_d455/camera_info:=/camera/camera_info \
     > /tmp/bridge.log 2>&1 &
 echo "       Bridge PID: $!"
 sleep 5
 
-for topic in /odom /scan /camera/image_raw; do
+for topic in /odom /scan /scan_rear /camera/image_raw; do
     if ros2 topic list 2>/dev/null | grep -q "$topic"; then
         echo "       ✅ $topic"
     else

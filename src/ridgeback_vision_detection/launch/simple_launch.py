@@ -46,12 +46,12 @@ def generate_launch_description():
     lidar_tf = Node(
         package='tf2_ros', executable='static_transform_publisher',
         arguments=['0','0','0','0','0','0',
-                   'lidar_link','ridgeback/base_link/lidar'],
+                   'lidar_front_link','ridgeback/base_link/lidar'],
         parameters=[{'use_sim_time': True}], output='log')
     camera_tf = Node(
         package='tf2_ros', executable='static_transform_publisher',
         arguments=['0','0','0','0','0','0',
-                   'camera_extra_link','ridgeback/base_link/camera_extra'],
+                   'd455_link','ridgeback/base_link/camera_d455'],
         parameters=[{'use_sim_time': True}], output='log')
 
     # ── Spawn robot (T=10) ──
@@ -68,15 +68,16 @@ def generate_launch_description():
                  '/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
                  '/odom@nav_msgs/msg/Odometry[gz.msgs.Odometry',
                  '/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan',
+                 '/scan_rear@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan',
                  '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
                  '/joint_states@sensor_msgs/msg/JointState[gz.msgs.Model',
-                 '/camera_sensor/image_raw@sensor_msgs/msg/Image[gz.msgs.Image',
-                 '/camera_sensor/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo',
+                 '/camera_d455/image_raw@sensor_msgs/msg/Image[gz.msgs.Image',
+                 '/camera_d455/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo',
              ],
              parameters=[{'use_sim_time': True}], output='screen',
              remappings=[
-                 ('/camera_sensor/image_raw', '/camera/image_raw'),
-                 ('/camera_sensor/camera_info', '/camera/camera_info')])])
+                 ('/camera_d455/image_raw', '/camera/image_raw'),
+                 ('/camera_d455/camera_info', '/camera/camera_info')])])
 
     # ── Odom TF (T=17) ──
     odom_tf = TimerAction(period=17.0, actions=[

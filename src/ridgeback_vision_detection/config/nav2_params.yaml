@@ -106,9 +106,19 @@ local_costmap:
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
-        observation_sources: scan
+        observation_sources: scan scan_rear
         scan:
           topic: /scan
+          max_obstacle_height: 2.0
+          clearing: True
+          marking: True
+          data_type: "LaserScan"
+          raytrace_max_range: 5.0
+          raytrace_min_range: 0.12
+          obstacle_max_range: 4.5
+          obstacle_min_range: 0.12
+        scan_rear:
+          topic: /scan_rear
           max_obstacle_height: 2.0
           clearing: True
           marking: True
@@ -137,9 +147,19 @@ global_costmap:
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
-        observation_sources: scan
+        observation_sources: scan scan_rear
         scan:
           topic: /scan
+          max_obstacle_height: 2.0
+          clearing: True
+          marking: True
+          data_type: "LaserScan"
+          raytrace_max_range: 5.0
+          raytrace_min_range: 0.12
+          obstacle_max_range: 4.5
+          obstacle_min_range: 0.12
+        scan_rear:
+          topic: /scan_rear
           max_obstacle_height: 2.0
           clearing: True
           marking: True

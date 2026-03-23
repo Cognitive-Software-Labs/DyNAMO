@@ -43,13 +43,13 @@ import heapq
 class HospitalMission(Node):
 
     # ── Tuning ───────────────────────────────────────────────
-    SAFE_DISTANCE       = 0.42    # safer clearance from walls (m)
-    SIDE_SAFE_DISTANCE  = 0.34    # lateral safety distance from nearby obstacles (m)
+    SAFE_DISTANCE       = 0.55    # safer clearance from walls (m)
+    SIDE_SAFE_DISTANCE  = 0.45    # lateral safety distance from nearby obstacles (m)
     CRITICAL_STOP_DIST  = 0.24    # emergency stop if any direction is closer than this (m)
     SEARCH_YAW_SPEED    = 0.8     # faster scan / reacquire
     SCAN_DURATION       = 12.0    # seconds for full 360°
     SCAN_TARGET_RAD     = 2.0 * math.pi  # true 360° target angle
-    MOVE_SPEED          = 0.3
+    MOVE_SPEED          = 0.24
     MIN_DETECT_AREA     = 80      # detect sphere earlier at longer range
     WAIT_SECONDS        = 10.0
     SPHERE_RADIUS_M     = 0.3
@@ -60,22 +60,34 @@ class HospitalMission(Node):
     DIST_TOLERANCE      = 0.3
 
     # Visual-servoing
-    SERVO_SPEED         = 0.2     # faster approach speed
+    SERVO_SPEED         = 0.15     # slower approach to reduce wall contacts
     SERVO_KP            = 2.0     # stronger correction to center the sphere
     SERVO_MAX_YAW       = 1.0
     BLOB_CLOSE_AREA     = 2500    # consider close sooner
     ARRIVAL_LIDAR_BLOB_AREA = 1000  # allow lidar-stop arrival even if blob smaller
+    ARRIVAL_MAX_EST_DIST = 1.0      # do not enter WAIT unless sphere is estimated very near
+    ARRIVAL_FRONT_MAX = 0.55         # require close front range before entering WAIT
+    ARRIVAL_MAX_CENTER_ERROR = 0.20  # require target well-centered before WAIT
+    ARRIVAL_HYST_BLOB_AREA = 1800    # close-range latch to avoid shake near target
+    ARRIVAL_HYST_EST_DIST = 1.25     # close-range latch distance (m)
+    SERVO_CENTER_DEADBAND = 0.08     # do not oscillate steering near center
+    NAV_AVOID_SWITCH_HYST = 0.10     # min side-clearance delta before switching turn side
+    NAV_AVOID_HOLD_SEC = 0.7         # hold chosen avoid turn direction briefly
     SERVO_LOST_TIMEOUT  = 6.0  # allow more time to reacquire the sphere while turning
-    NAV_LIDAR_STOP      = 0.8    # balanced stop distance near sphere/walls (lower so it can approach closer)
+    NAV_LIDAR_STOP      = 1.0    # stop earlier near obstacles to avoid wall contacts
 
     # Return (  via Nav2)
     NAV2_TIMEOUT        = 90.0    # seconds before Nav2 goal considered stuck
     RETURN_MAX_RETRIES  = 5       # keep retries bounded before ending mission safely
     RETURN_RETRY_DELAY  = 1.0     # seconds between retries
+    RETURN_STALL_TIME   = 8.0     # seconds with little progress before fallback
+    RETURN_STALL_DIST   = 0.12    # minimum map movement considered progress
+    RETURN_DIRECT_SPEED = 0.20    # fallback direct-return speed (m/s)
+    RETURN_DIRECT_KP    = 1.6     # fallback heading controller gain
     HOME_REACHED_DIST   = 0.65    # must be within this map distance to finish
     HOME_REACHED_ODOM_DIST = 1.8  # odom sanity gate for DONE; relaxed to avoid false non-completion
     HOME_STABLE_SEC     = 2.0     # must stay near home this long (manual fallback)
-    STOP_ON_FIRST_SUCCESS = True  # stop mission when sphere found OR map fully explored
+    STOP_ON_FIRST_SUCCESS = False  # keep full mission flow: NAVIGATE -> WAIT -> RETURN -> DONE
     MAP_COMPLETE_RATIO  = 0.92    # known-map ratio considered fully explored
     MAP_COMPLETE_HOLD_S = 12.0    # keep no-frontier this long before declaring completion
 
@@ -85,7 +97,7 @@ class HospitalMission(Node):
     FRONTIER_TIMEOUT    = 90.0    # give up on a frontier after this many seconds
     FRONTIER_MAX_FAILS  = 5       # trigger recovery after this many consecutive Nav2 failures
     FRONTIER_MIN_CLUSTER_CELLS = 8    # ignore tiny/noisy frontier blobs
-    FRONTIER_CLEARANCE_M = 0.25       # keep frontier goals away from walls/obstacles
+    FRONTIER_CLEARANCE_M = 0.40       # keep frontier goals further from walls/obstacles
     FRONTIER_BLOCK_RADIUS = 2.0       # avoid recently failed frontier neighbourhood
     FRONTIER_BLOCK_TTL = 120.0        # seconds to remember blocked frontier goals
     NO_FRONTIER_MOVE_SPEED = 0.30     # active exploration speed when no frontiers are available
@@ -224,6 +236,8 @@ class HospitalMission(Node):
             history=HistoryPolicy.KEEP_LAST, depth=5)
         self.create_subscription(LaserScan, '/scan',
                                  self.scan_callback, lidar_qos)
+        self.create_subscription(LaserScan, '/scan_rear',
+                                 self.scan_rear_callback, lidar_qos)
 
         # SLAM map (TRANSIENT_LOCAL so we get the latest even if we subscribe late)
         map_qos = QoSProfile(
@@ -300,6 +314,9 @@ class HospitalMission(Node):
         self._return_nav2_sent  = False
         self._return_retry_count = 0
         self._return_retry_after = 0.0
+        self._return_stall_ref_pose = None
+        self._return_stall_start_time = 0.0
+        self._return_direct_mode = False
         self._last_progress_log = 0.0
         self._home_near_since   = None
         self._map_complete_since = None
@@ -320,8 +337,14 @@ class HospitalMission(Node):
         self.left_min_range     = float('inf')
         self.right_min_range    = float('inf')
         self.global_min_range   = float('inf')
-        self._scan_base_yaw_in_lidar = 0.0
-        self._last_scan_tf_lookup = 0.0
+        self._scan_directional_mins = {
+            '/scan': None,
+            '/scan_rear': None,
+        }
+        self._nav_avoid_turn_sign = 1.0
+        self._nav_avoid_turn_until = 0.0
+        self._scan_base_yaw_in_lidar = {}
+        self._last_scan_tf_lookup = {}
 
         # Wait
         self.wait_start_time    = None
@@ -593,12 +616,14 @@ class HospitalMission(Node):
     def _get_scan_base_yaw_in_lidar(self, scan_frame, scan_stamp=None):
         """Yaw of base_link x-axis expressed in LiDAR scan frame."""
         now = self.now_sec()
-        if (now - self._last_scan_tf_lookup) < 0.5:
-            return self._scan_base_yaw_in_lidar
-
-        self._last_scan_tf_lookup = now
         if not scan_frame:
-            return self._scan_base_yaw_in_lidar
+            return 0.0
+
+        last_lookup = self._last_scan_tf_lookup.get(scan_frame, 0.0)
+        if (now - last_lookup) < 0.5:
+            return self._scan_base_yaw_in_lidar.get(scan_frame, 0.0)
+
+        self._last_scan_tf_lookup[scan_frame] = now
 
         try:
             query_time = rclpy.time.Time()
@@ -613,7 +638,7 @@ class HospitalMission(Node):
                 'base_link',
                 query_time,
                 timeout=rclpy.duration.Duration(seconds=0.15))
-            self._scan_base_yaw_in_lidar = self.quat_to_yaw(t.transform.rotation)
+            self._scan_base_yaw_in_lidar[scan_frame] = self.quat_to_yaw(t.transform.rotation)
         except Exception:
             # Fallback to latest available transform if timestamped query fails.
             try:
@@ -622,25 +647,25 @@ class HospitalMission(Node):
                     'base_link',
                     rclpy.time.Time(),
                     timeout=rclpy.duration.Duration(seconds=0.05))
-                self._scan_base_yaw_in_lidar = self.quat_to_yaw(t.transform.rotation)
+                self._scan_base_yaw_in_lidar[scan_frame] = self.quat_to_yaw(t.transform.rotation)
             except Exception:
                 pass
 
-        return self._scan_base_yaw_in_lidar
+        return self._scan_base_yaw_in_lidar.get(scan_frame, 0.0)
 
     # ── LiDAR callback ───────────────────────────────────────
-    def scan_callback(self, msg):
+    def _compute_directional_mins(self, msg):
         ranges = np.array(msg.ranges)
         n = len(ranges)
         if n == 0:
-            return
+            return None
 
         valid_all = ranges[(ranges > msg.range_min) & (ranges < msg.range_max)]
-        self.global_min_range = float(np.min(valid_all)) if len(valid_all) > 0 else float('inf')
+        global_min = float(np.min(valid_all)) if len(valid_all) > 0 else float('inf')
 
         angle_inc = msg.angle_increment
         if abs(angle_inc) < 1e-9:
-            return
+            return None
 
         angles = msg.angle_min + np.arange(n, dtype=np.float64) * angle_inc
         half_width = math.radians(45.0)
@@ -655,10 +680,37 @@ class HospitalMission(Node):
             valid = sector[(sector > msg.range_min) & (sector < msg.range_max)]
             return float(np.min(valid)) if len(valid) > 0 else float('inf')
 
-        self.front_min_range = sector_min(base_yaw)
-        self.rear_min_range = sector_min(base_yaw + math.pi)
-        self.left_min_range = sector_min(base_yaw + math.pi / 2.0)
-        self.right_min_range = sector_min(base_yaw - math.pi / 2.0)
+        return {
+            'front': sector_min(base_yaw),
+            'rear': sector_min(base_yaw + math.pi),
+            'left': sector_min(base_yaw + math.pi / 2.0),
+            'right': sector_min(base_yaw - math.pi / 2.0),
+            'global': global_min,
+        }
+
+    def _update_combined_scan_mins(self):
+        valid_stats = [s for s in self._scan_directional_mins.values() if s is not None]
+        if not valid_stats:
+            self.front_min_range = float('inf')
+            self.rear_min_range = float('inf')
+            self.left_min_range = float('inf')
+            self.right_min_range = float('inf')
+            self.global_min_range = float('inf')
+            return
+
+        self.front_min_range = min(s['front'] for s in valid_stats)
+        self.rear_min_range = min(s['rear'] for s in valid_stats)
+        self.left_min_range = min(s['left'] for s in valid_stats)
+        self.right_min_range = min(s['right'] for s in valid_stats)
+        self.global_min_range = min(s['global'] for s in valid_stats)
+
+    def scan_callback(self, msg):
+        self._scan_directional_mins['/scan'] = self._compute_directional_mins(msg)
+        self._update_combined_scan_mins()
+
+    def scan_rear_callback(self, msg):
+        self._scan_directional_mins['/scan_rear'] = self._compute_directional_mins(msg)
+        self._update_combined_scan_mins()
 
     # ── Odom callback ────────────────────────────────────────
     def get_map_pose(self):
@@ -1596,8 +1648,9 @@ class HospitalMission(Node):
                     (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX,
                     0.50, (0, 255, 0), 2)
 
-        # Confirmations during SCAN_360 or EXPLORE
-        if self.state in ('SCAN_360', 'EXPLORE'):
+        # Confirmations during search or return-to-home.
+        # If the sphere appears while returning, re-engage NAVIGATE.
+        if self.state in ('SCAN_360', 'EXPLORE', 'RETURN'):
             if self.blob_detected and self.odom_received:
                 self.confirm_count += 1
                 if self.confirm_count >= self.CONFIRM_FRAMES:
@@ -1707,7 +1760,7 @@ class HospitalMission(Node):
             f'🔍 360 scan at map '
             f'({mx:.1f}, {my:.1f}), frontier #{self._frontier_count}')
 
-    def _start_return_home(self, reason=''):
+    def _start_return_home(self, reason='', preserve_reached=False):
         """Begin return-home sequence toward the original start pose."""
         if self.start_pose is None:
             self.get_logger().warn('⚠️ Cannot RETURN: start pose is unavailable.')
@@ -1720,8 +1773,11 @@ class HospitalMission(Node):
         self._return_nav2_sent = False
         self._return_retry_count = 0
         self._return_retry_after = self.now_sec()
+        self._return_stall_ref_pose = None
+        self._return_stall_start_time = 0.0
+        self._return_direct_mode = False
         self._home_near_since = None
-        self._sphere_reached = False
+        self._sphere_reached = bool(preserve_reached)
 
         sx, sy, _ = self.start_pose
         mpose = self.get_map_pose()
@@ -1906,15 +1962,12 @@ class HospitalMission(Node):
 
             # Sphere spotted at any time → drop everything and servo to it
             if self.sphere_confirmed:
-                if self.STOP_ON_FIRST_SUCCESS:
-                    self._complete_mission('sphere detected first')
-                else:
-                    self.cancel_nav2_goal()
-                    self.stop_robot()
-                    self.state = 'NAVIGATE'
-                    self.servo_lost_time = None
-                    self.get_logger().info(
-                        '🧭 Sphere spotted while exploring → NAVIGATE')
+                self.cancel_nav2_goal()
+                self.stop_robot()
+                self.state = 'NAVIGATE'
+                self.servo_lost_time = None
+                self.get_logger().info(
+                    '🧭 Sphere spotted while exploring → NAVIGATE')
                 return
 
             if self.DOOR_SWEEP_ENABLE:
@@ -2269,14 +2322,11 @@ class HospitalMission(Node):
         # ─── SCAN_360 (angle-based true 360° rotation) ───
         if self.state == 'SCAN_360':
             if self.sphere_confirmed:
-                if self.STOP_ON_FIRST_SUCCESS:
-                    self._complete_mission('sphere detected during scan')
-                else:
-                    self.stop_robot()
-                    self.state = 'NAVIGATE'
-                    self.servo_lost_time = None
-                    self.get_logger().info(
-                        '🧭 Sphere detected → NAVIGATE (visual servo)')
+                self.stop_robot()
+                self.state = 'NAVIGATE'
+                self.servo_lost_time = None
+                self.get_logger().info(
+                    '🧭 Sphere detected → NAVIGATE (visual servo)')
                 return
 
             if self.scan_last_yaw is None:
@@ -2303,11 +2353,34 @@ class HospitalMission(Node):
 
         # ─── NAVIGATE (visual servo with obstacle avoidance) ───
         if self.state == 'NAVIGATE':
+            half_w = self.IMAGE_WIDTH / 2.0
+            center_error = 1.0
+            if self.blob_cx is not None:
+                center_error = abs((half_w - self.blob_cx) / half_w)
+
+            # Close-range latch: once very near the target, settle to WAIT to
+            # avoid oscillating between wall-avoid and visual-servo commands.
+            if self.blob_detected and \
+                    self.blob_area >= self.ARRIVAL_HYST_BLOB_AREA and \
+                    self._est_sphere_dist <= self.ARRIVAL_HYST_EST_DIST and \
+                    self.front_min_range <= (self.ARRIVAL_FRONT_MAX + 0.15):
+                self.stop_robot()
+                self._sphere_reached = True
+                self.state = 'WAIT'
+                self.wait_start_time = None
+                self.get_logger().info(
+                    f'⏱️  Close-range arrival latch: '
+                    f'd~{self._est_sphere_dist:.2f}m, area={self.blob_area:.0f}px')
+                return
+
             # LiDAR safety — too close to anything in front
             if self.front_min_range < self.NAV_LIDAR_STOP:
                 # Only treat this as "arrived" if camera also sees a large blob.
                 if self.blob_detected and \
-                        self.blob_area >= self.ARRIVAL_LIDAR_BLOB_AREA:
+                        self.blob_area >= self.ARRIVAL_LIDAR_BLOB_AREA and \
+                        self._est_sphere_dist <= self.ARRIVAL_MAX_EST_DIST and \
+                        self.front_min_range <= self.ARRIVAL_FRONT_MAX and \
+                        center_error <= self.ARRIVAL_MAX_CENTER_ERROR:
                     self.stop_robot()
                     self._sphere_reached = True
                     self.state = 'WAIT'
@@ -2318,15 +2391,44 @@ class HospitalMission(Node):
                         f'area={self.blob_area:.0f}px → WAIT')
                     return
 
-                # Otherwise this is likely a wall/obstacle, not the sphere.
+                # Otherwise this is likely a wall/obstacle. Keep tracking the
+                # sphere and avoid a fixed one-direction spin.
                 cmd = Twist()
-                cmd.angular.z = self.SEARCH_YAW_SPEED * 0.6
+                turn_sign = self._nav_avoid_turn_sign
+                desired_sign = turn_sign
+                if self.blob_detected and self.blob_cx is not None:
+                    half_w = self.IMAGE_WIDTH / 2.0
+                    err = (half_w - self.blob_cx) / half_w
+                    if abs(err) > 0.15:
+                        desired_sign = 1.0 if err > 0.0 else -1.0
+                else:
+                    side_delta = self.left_min_range - self.right_min_range
+                    if abs(side_delta) > self.NAV_AVOID_SWITCH_HYST:
+                        desired_sign = 1.0 if side_delta > 0.0 else -1.0
+
+                now = self.now_sec()
+                if now >= self._nav_avoid_turn_until and desired_sign != self._nav_avoid_turn_sign:
+                    self._nav_avoid_turn_sign = desired_sign
+                    self._nav_avoid_turn_until = now + self.NAV_AVOID_HOLD_SEC
+
+                turn_sign = self._nav_avoid_turn_sign
+
+                # If not critically close, creep forward while turning toward
+                # the target/open side instead of spinning in place.
+                if self.front_min_range > (self.SAFE_DISTANCE + 0.08):
+                    cmd.linear.x = 0.08
+                    cmd.angular.z = self.SEARCH_YAW_SPEED * 0.35 * turn_sign
+                else:
+                    cmd.angular.z = self.SEARCH_YAW_SPEED * 0.65 * turn_sign
                 self.cmd_pub.publish(self._apply_safety_to_cmd(cmd))
                 return
 
             # Blob large enough → arrived at sphere
             if self.blob_detected and \
-                    self.blob_area >= self.BLOB_CLOSE_AREA:
+                    self.blob_area >= self.BLOB_CLOSE_AREA and \
+                    self._est_sphere_dist <= self.ARRIVAL_MAX_EST_DIST and \
+                    self.front_min_range <= self.ARRIVAL_FRONT_MAX and \
+                    center_error <= self.ARRIVAL_MAX_CENTER_ERROR:
                 self.stop_robot()
                 self._sphere_reached = True
                 self.state = 'WAIT'
@@ -2341,6 +2443,8 @@ class HospitalMission(Node):
                 self.servo_lost_time = None
                 half_w = self.IMAGE_WIDTH / 2.0
                 error = (half_w - self.blob_cx) / half_w
+                if abs(error) < self.SERVO_CENTER_DEADBAND:
+                    error = 0.0
 
                 cmd = Twist()
                 cmd.linear.x = self.SERVO_SPEED
@@ -2363,7 +2467,7 @@ class HospitalMission(Node):
                             '❌ Blob lost too long after target lock – RETURN home')
                         self.sphere_confirmed = False
                         self._start_return_home(
-                            'Target lost during approach')
+                            'Target lost during approach', preserve_reached=False)
                     else:
                         self.get_logger().warn(
                             '❌ Blob lost too long – switching to 360° scan')
@@ -2391,13 +2495,23 @@ class HospitalMission(Node):
                         '— forcing RETURN home.')
                     self.sphere_confirmed = False
                     self._start_return_home(
-                        'WAIT timeout')
+                        'WAIT timeout', preserve_reached=False)
                     return
-                self._start_return_home('Wait done – turning 180° then RETURN')
+                self._start_return_home(
+                    'Wait done – turning 180° then RETURN', preserve_reached=True)
             return
 
         # ─── RETURN (Nav2   only) ───
         if self.state == 'RETURN':
+            if self.sphere_confirmed and not self._sphere_reached:
+                self.cancel_nav2_goal()
+                self.stop_robot()
+                self.state = 'NAVIGATE'
+                self.servo_lost_time = None
+                self.get_logger().info(
+                    '🧭 Sphere detected during RETURN → NAVIGATE')
+                return
+
             sx, sy, syaw = self.start_pose
 
             # ── Map-frame distance (SLAM is accurate, odom integration is NOT
@@ -2432,6 +2546,23 @@ class HospitalMission(Node):
 
             # Nav2 path-planned return ( )
             if self._return_phase == 'NAV2':
+                if self._return_direct_mode:
+                    heading = math.atan2(map_dy, map_dx)
+                    yaw_err = self.normalize_angle(heading - myaw)
+                    cmd = Twist()
+                    cmd.angular.z = max(-self.SERVO_MAX_YAW,
+                                        min(self.SERVO_MAX_YAW,
+                                            self.RETURN_DIRECT_KP * yaw_err))
+
+                    if self.front_min_range > self.SAFE_DISTANCE and abs(yaw_err) < 0.55:
+                        cmd.linear.x = min(self.RETURN_DIRECT_SPEED,
+                                           0.10 + 0.10 * map_dist)
+                    else:
+                        cmd.linear.x = 0.0
+
+                    self.cmd_pub.publish(self._apply_safety_to_cmd(cmd))
+                    return
+
                 if self.now_sec() < self._return_retry_after:
                     return
 
@@ -2464,6 +2595,8 @@ class HospitalMission(Node):
                         self.nav2_reached = False
                         self._return_nav2_sent = False
                         self._return_retry_after = self.now_sec() + self.RETURN_RETRY_DELAY
+                        self._return_stall_ref_pose = None
+                        self._return_stall_start_time = 0.0
                         self.get_logger().warn(
                             f'⚠️ Nav2 reported success but robot is still '
                             f'map={map_dist:.2f}m/odom={odom_dist:.2f}m from home; '
@@ -2475,34 +2608,53 @@ class HospitalMission(Node):
                     self.nav2_failed = False
                     self._return_nav2_sent = False
                     self._return_retry_after = self.now_sec() + self.RETURN_RETRY_DELAY
+                    self._return_stall_ref_pose = None
+                    self._return_stall_start_time = 0.0
                     self.get_logger().warn(
                         f'⚠️ Nav2   RETURN failed (attempt {self._return_retry_count}/'
                         f'{self.RETURN_MAX_RETRIES}) – clearing costmaps and retrying...')
                     self.clear_costmaps()
                     if self._return_retry_count >= self.RETURN_MAX_RETRIES:
-                        self.stop_robot()
-                        self.state = 'DONE'
-                        self._mission_complete = True
-                        self.get_logger().error(
-                            '❌ RETURN aborted after maximum Nav2 retries.')
+                        self._return_direct_mode = True
+                        self.get_logger().warn(
+                            '⚠️ Nav2 RETURN retries exhausted – switching to direct return fallback')
                     return
+
+                if self._return_nav2_sent and not self.nav2_reached and not self.nav2_failed:
+                    if self._return_stall_ref_pose is None:
+                        self._return_stall_ref_pose = (mx, my)
+                        self._return_stall_start_time = now
+                    else:
+                        moved = math.hypot(mx - self._return_stall_ref_pose[0],
+                                           my - self._return_stall_ref_pose[1])
+                        if moved >= self.RETURN_STALL_DIST:
+                            self._return_stall_ref_pose = (mx, my)
+                            self._return_stall_start_time = now
+                        elif (now - self._return_stall_start_time) > self.RETURN_STALL_TIME:
+                            self.cancel_nav2_goal()
+                            self._return_nav2_sent = False
+                            self._return_direct_mode = True
+                            self.get_logger().warn(
+                                f'⚠️ Nav2 RETURN stalled ({moved:.2f}m in '
+                                f'{(now - self._return_stall_start_time):.0f}s) – direct return fallback')
+                            return
 
                 elapsed = self.now_sec() - self._return_start_time
                 if elapsed > self.NAV2_TIMEOUT:
                     self.cancel_nav2_goal()
                     self._return_nav2_sent = False
                     self._return_retry_after = self.now_sec() + self.RETURN_RETRY_DELAY
+                    self._return_stall_ref_pose = None
+                    self._return_stall_start_time = 0.0
                     self.get_logger().warn(
                         f'⏰ Nav2 RETURN timeout ({elapsed:.0f}s) '
                         f'on attempt {self._return_retry_count}/{self.RETURN_MAX_RETRIES}; '
                         f'retrying   return...')
                     self.clear_costmaps()
                     if self._return_retry_count >= self.RETURN_MAX_RETRIES:
-                        self.stop_robot()
-                        self.state = 'DONE'
-                        self._mission_complete = True
-                        self.get_logger().error(
-                            '❌ RETURN aborted after repeated Nav2 timeouts.')
+                        self._return_direct_mode = True
+                        self.get_logger().warn(
+                            '⚠️ Nav2 RETURN timed out repeatedly – switching to direct return fallback')
                     return
 
                 return
