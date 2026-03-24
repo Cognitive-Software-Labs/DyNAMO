@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <link name="lidar_front_link">
+    <visual>
+      <geometry><cylinder radius="0.05" length="0.07"/></geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <geometry><cylinder radius="0.05" length="0.07"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="0.2"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-4" ixy="0" ixz="0" iyy="1e-4" iyz="0" izz="1e-4"/>
+    </inertial>
+  </link>
+
+  <joint name="lidar_front_joint" type="fixed">
+    <parent link="chassis_link"/>
+    <child link="lidar_front_link"/>
+    <origin xyz="0.35 0.0 0.32" rpy="0 0 0"/>
+  </joint>
+
+  <link name="lidar_rear_link">
+    <visual>
+      <geometry><cylinder radius="0.05" length="0.07"/></geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <geometry><cylinder radius="0.05" length="0.07"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="0.2"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-4" ixy="0" ixz="0" iyy="1e-4" iyz="0" izz="1e-4"/>
+    </inertial>
+  </link>
+
+  <joint name="lidar_rear_joint" type="fixed">
+    <parent link="chassis_link"/>
+    <child link="lidar_rear_link"/>
+    <origin xyz="-0.35 0.0 0.32" rpy="0 0 3.14159"/>
+  </joint>
+
+  <gazebo reference="lidar_front_link">
+    <sensor name="lidar_front" type="gpu_lidar">
+      <update_rate>10</update_rate>
+      <topic>scan</topic>
+      <gz_frame_id>lidar_front_link</gz_frame_id>
+      <ignition_frame_id>lidar_front_link</ignition_frame_id>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <min_angle>-2.35619</min_angle>
+            <max_angle>2.35619</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.12</min>
+          <max>12.0</max>
+        </range>
+      </ray>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="lidar_rear_link">
+    <sensor name="lidar_rear" type="gpu_lidar">
+      <update_rate>10</update_rate>
+      <topic>scan_rear</topic>
+      <gz_frame_id>lidar_rear_link</gz_frame_id>
+      <ignition_frame_id>lidar_rear_link</ignition_frame_id>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <min_angle>-2.35619</min_angle>
+            <max_angle>2.35619</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.12</min>
+          <max>12.0</max>
+        </range>
+      </ray>
+    </sensor>
+  </gazebo>
+
+</robot>

@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<robot>
+  <gazebo>
+    <!-- Joint State Publisher for Gz Sim -->
+    <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+      <topic>/joint_states</topic>
+    </plugin>
+
+    <!-- Diff Drive (Skid Steer) for Gz Sim -->
+    <!-- Treating Ridgeback as Skid Steer for simplicity in Sim -->
+    <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+      <left_joint>front_left_wheel</left_joint>
+      <left_joint>rear_left_wheel</left_joint>
+      <right_joint>front_right_wheel</right_joint>
+      <right_joint>rear_right_wheel</right_joint>
+      <wheel_separation>0.472</wheel_separation> <!-- Rocker width approx -->
+      <wheel_radius>0.0759</wheel_radius>
+      <odom_publish_frequency>50</odom_publish_frequency>
+      <topic>/cmd_vel</topic>
+      <odom_topic>/odom_wheel</odom_topic>
+      <tf_topic>/tf_wheel</tf_topic>
+      <frame_id>odom_wheel</frame_id>
+      <child_frame_id>base_link</child_frame_id>
+    </plugin>
+    
+    <!-- Ground Truth Odometry directly from Simulator -->
+    <plugin filename="gz-sim-odometry-publisher-system" name="gz::sim::systems::OdometryPublisher">
+      <odom_frame>odom</odom_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+      <odom_topic>/odom</odom_topic>
+      <tf_topic>/tf</tf_topic>
+      <dimensions>2</dimensions>
+      <odom_publish_frequency>50</odom_publish_frequency>
+    </plugin>
+
+  </gazebo>
+
+  <!-- IMU sensor on imu_link — gives ground-truth orientation in Gazebo -->
+  <gazebo reference="imu_link">
+    <sensor name="imu_sensor" type="imu">
+      <always_on>true</always_on>
+      <update_rate>50</update_rate>
+      <topic>/imu</topic>
+      <imu>
+        <angular_velocity>
+          <x><noise type="none"/></x>
+          <y><noise type="none"/></y>
+          <z><noise type="none"/></z>
+        </angular_velocity>
+        <linear_acceleration>
+          <x><noise type="none"/></x>
+          <y><noise type="none"/></y>
+          <z><noise type="none"/></z>
+        </linear_acceleration>
+      </imu>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="base_link">
+    <material>Gazebo/DarkGrey</material>
+    <gravity>true</gravity>
+  </gazebo>
+
+  <gazebo reference="chassis_link"><material>Gazebo/DarkGrey</material></gazebo>
+  <gazebo reference="top_link"><material>Gazebo/DarkGrey</material></gazebo>
+  <gazebo reference="left_side_cover_link"><material>Gazebo/Yellow</material></gazebo>
+  <gazebo reference="right_side_cover_link"><material>Gazebo/Yellow</material></gazebo>
+  <gazebo reference="front_cover_link"><material>Gazebo/DarkGrey</material></gazebo>
+  <gazebo reference="rear_cover_link"><material>Gazebo/DarkGrey</material></gazebo>
+  <gazebo reference="front_lights_link"><material>Gazebo/White</material></gazebo>
+  <gazebo reference="rear_lights_link"><material>Gazebo/Red</material></gazebo>
+  <gazebo reference="front_rocker_link"><material>Gazebo/DarkGrey</material></gazebo>
+  <gazebo reference="rear_rocker_link"><material>Gazebo/DarkGrey</material></gazebo>
+  <gazebo reference="axle_link"><material>Gazebo/DarkGrey</material></gazebo>
+
+  <!-- Restore friction for Skid Steer (Simulating Mecanum as Skid Steer) -->
+  <gazebo reference="front_left_wheel_link">
+    <material>Gazebo/DarkGrey</material>
+    <mu1>0.8</mu1>
+    <mu2>0.01</mu2>
+  </gazebo>
+
+  <gazebo reference="front_right_wheel_link">
+    <material>Gazebo/DarkGrey</material>
+    <mu1>0.8</mu1>
+    <mu2>0.01</mu2>
+  </gazebo>
+
+  <gazebo reference="rear_left_wheel_link">
+    <material>Gazebo/DarkGrey</material>
+    <mu1>0.8</mu1>
+    <mu2>0.01</mu2>
+  </gazebo>
+
+  <gazebo reference="rear_right_wheel_link">
+    <material>Gazebo/DarkGrey</material>
+    <mu1>0.8</mu1>
+    <mu2>0.01</mu2>
+  </gazebo>
+</robot>

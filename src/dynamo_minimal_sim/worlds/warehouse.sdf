@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <world name="warehouse">
+
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>2.5</real_time_factor>
+      <real_time_update_rate>2000</real_time_update_rate>
+    </physics>
+
+    <!-- Essential Systems -->
+    <plugin filename="libgz-sim-physics-system.so" name="gz::sim::systems::Physics"/>
+    <plugin filename="libgz-sim-user-commands-system.so" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="libgz-sim-scene-broadcaster-system.so" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="libgz-sim-sensors-system.so" name="gz::sim::systems::Sensors"/>
+
+    <!-- HIGH INTENSITY CLINICAL LIGHTS -->
+    <light type="directional" name="sun">
+      <pose>0 0 20 0 0 0</pose>
+      <diffuse>1.0 1.0 1.0 1</diffuse>
+      <specular>0.5 0.5 0.5 1</specular>
+      <direction>-0.5 -0.1 -0.9</direction>
+    </light>
+    
+    <!-- Ceiling Grid Lights -->
+    <light type="point" name="l1"><pose>-10 10 4 0 0 0</pose><diffuse>1 1 1 1</diffuse></light>
+    <light type="point" name="l2"><pose>10 10 4 0 0 0</pose><diffuse>1 1 1 1</diffuse></light>
+    <light type="point" name="l3"><pose>-10 -10 4 0 0 0</pose><diffuse>1 1 1 1</diffuse></light>
+    <light type="point" name="l4"><pose>10 -10 4 0 0 0</pose><diffuse>1 1 1 1</diffuse></light>
+
+    <!-- PREMIUM HOSPITAL FLOOR -->
+    <model name="hospital_floor">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision"><geometry><plane><normal>0 0 1</normal><size>60 40</size></plane></geometry></collision>
+        <visual name="visual">
+          <geometry><plane><normal>0 0 1</normal><size>60 40</size></plane></geometry>
+          <material>
+            <ambient>0.9 0.95 1.0 1</ambient>
+            <diffuse>0.9 0.95 1.0 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- WIDE OPEN WARD (Path is clear for the robot) -->
+    <model name="bed1"><static>true</static><pose>12 8 0.4 0 0 1.57</pose><link name="l"><visual name="v"><geometry><box><size>2.2 1.2 0.8</size></box></geometry><material><ambient>1 1 1 1</ambient></material></visual></link></model>
+    <model name="bed2"><static>true</static><pose>12 0 0.4 0 0 1.57</pose><link name="l"><visual name="v"><geometry><box><size>2.2 1.2 0.8</size></box></geometry><material><ambient>1 1 1 1</ambient></material></visual></link></model>
+    <model name="bed3"><static>true</static><pose>12 -8 0.4 0 0 1.57</pose><link name="l"><visual name="v"><geometry><box><size>2.2 1.2 0.8</size></box></geometry><material><ambient>1 1 1 1</ambient></material></visual></link></model>
+
+    <!-- TARGET RED SPHERE -->
+    <model name="red_sphere">
+      <static>false</static>
+      <pose>22.0 9.0 0.3 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><sphere><radius>0.3</radius></sphere></geometry></collision>
+        <visual name="visual">
+          <geometry><sphere><radius>0.3</radius></sphere></geometry>
+          <material><ambient>1 0 0 1</ambient><diffuse>1 0 0 1</diffuse><specular>1 1 1 1</specular></material>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>
