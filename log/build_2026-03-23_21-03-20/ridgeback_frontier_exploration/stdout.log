@@ -1,0 +1,81 @@
+running egg_info
+creating ../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info
+writing ../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/PKG-INFO
+writing dependency_links to ../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/dependency_links.txt
+writing entry points to ../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/entry_points.txt
+writing requirements to ../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/requires.txt
+writing top-level names to ../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/top_level.txt
+writing manifest file '../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/SOURCES.txt'
+reading manifest file '../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/SOURCES.txt'
+writing manifest file '../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/czika-stefania/Documents/DyNAMO/DyNAMO/build/ridgeback_frontier_exploration/build
+creating /home/czika-stefania/Documents/DyNAMO/DyNAMO/build/ridgeback_frontier_exploration/build/lib
+creating /home/czika-stefania/Documents/DyNAMO/DyNAMO/build/ridgeback_frontier_exploration/build/lib/ridgeback_frontier_exploration
+copying ridgeback_frontier_exploration/odom_tf_pub.py -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/build/ridgeback_frontier_exploration/build/lib/ridgeback_frontier_exploration
+copying ridgeback_frontier_exploration/__init__.py -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/build/ridgeback_frontier_exploration/build/lib/ridgeback_frontier_exploration
+running install
+running install_lib
+creating /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/lib/python3.12/site-packages/ridgeback_frontier_exploration
+copying /home/czika-stefania/Documents/DyNAMO/DyNAMO/build/ridgeback_frontier_exploration/build/lib/ridgeback_frontier_exploration/odom_tf_pub.py -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/lib/python3.12/site-packages/ridgeback_frontier_exploration
+copying /home/czika-stefania/Documents/DyNAMO/DyNAMO/build/ridgeback_frontier_exploration/build/lib/ridgeback_frontier_exploration/__init__.py -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/lib/python3.12/site-packages/ridgeback_frontier_exploration
+byte-compiling /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/lib/python3.12/site-packages/ridgeback_frontier_exploration/odom_tf_pub.py to odom_tf_pub.cpython-312.pyc
+byte-compiling /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/lib/python3.12/site-packages/ridgeback_frontier_exploration/__init__.py to __init__.cpython-312.pyc
+running install_data
+creating /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ament_index
+creating /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ament_index/resource_index
+creating /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ament_index/resource_index/packages
+copying resource/ridgeback_frontier_exploration -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ament_index/resource_index/packages
+copying package.xml -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration
+creating /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/launch
+copying launch/sim_base_launch.py -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/launch
+copying launch/frontier_exploration_lidar_only_launch.py -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/launch
+creating /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/models
+copying models/red_sphere.sdf -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/models
+creating /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/urdf
+copying urdf/lidar_extras.urdf.xacro -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/urdf
+copying urdf/camera_extras.urdf.xacro -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/urdf
+copying urdf/empty.urdf -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/urdf
+copying urdf/ridgeback.gazebo -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/urdf
+copying urdf/accessories.urdf.xacro -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/urdf
+copying urdf/ridgeback.urdf.xacro -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/urdf
+creating /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/urdf/configs
+copying urdf/configs/base -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/urdf/configs
+copying urdf/configs/dual_hokuyo_lasers -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/urdf/configs
+copying urdf/configs/empty -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/urdf/configs
+copying urdf/configs/dual_sick_lasers -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/urdf/configs
+copying urdf/configs/base_sick -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/urdf/configs
+creating /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/urdf/accessories
+copying urdf/accessories/microstrain_imu.urdf.xacro -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/urdf/accessories
+copying urdf/accessories/hokuyo_ust-10lx_mount.urdf.xacro -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/urdf/accessories
+copying urdf/accessories/sick_lms1xx_mount.urdf.xacro -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/urdf/accessories
+copying urdf/accessories/sick_s300_mount.urdf.xacro -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/urdf/accessories
+creating /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/meshes
+copying meshes/body-collision.stl -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/meshes
+copying meshes/rocker.stl -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/meshes
+copying meshes/top.stl -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/meshes
+copying meshes/wheel.stl -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/meshes
+copying meshes/end-cover.stl -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/meshes
+copying meshes/ust-10lx.stl -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/meshes
+copying meshes/lights.stl -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/meshes
+copying meshes/body.stl -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/meshes
+copying meshes/3dm-gxX.stl -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/meshes
+copying meshes/side-cover.stl -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/meshes
+copying meshes/axle.stl -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/meshes
+creating /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/worlds
+copying worlds/hospital.sdf -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/worlds
+creating /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/materials
+creating /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/materials/textures
+copying materials/textures/floor.png -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/materials/textures
+creating /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/config
+copying config/slam_params.yaml -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/config
+copying config/nav2_params.yaml -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/config
+copying config/explore.yaml -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/config
+creating /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/rviz
+copying rviz/nav2_view.rviz -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/rviz
+running install_egg_info
+Copying ../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info to /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/lib/python3.12/site-packages/ridgeback_frontier_exploration-0.0.0-py3.12.egg-info
+running install_scripts
+Installing odom_tf_pub script to /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/lib/ridgeback_frontier_exploration
+writing list of installed files to '/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/ridgeback_frontier_exploration/install.log'

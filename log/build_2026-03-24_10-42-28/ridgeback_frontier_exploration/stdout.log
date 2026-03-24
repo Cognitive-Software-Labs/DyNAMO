@@ -1,0 +1,20 @@
+running egg_info
+writing ../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/PKG-INFO
+writing dependency_links to ../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/dependency_links.txt
+writing entry points to ../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/entry_points.txt
+writing requirements to ../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/requires.txt
+writing top-level names to ../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/top_level.txt
+reading manifest file '../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/SOURCES.txt'
+writing manifest file '../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+running install_data
+copying config/nav2_params.yaml -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/config
+running install_egg_info
+removing '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/lib/python3.12/site-packages/ridgeback_frontier_exploration-0.0.0-py3.12.egg-info' (and everything under it)
+Copying ../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info to /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/lib/python3.12/site-packages/ridgeback_frontier_exploration-0.0.0-py3.12.egg-info
+running install_scripts
+Installing odom_tf_pub script to /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/lib/ridgeback_frontier_exploration
+writing list of installed files to '/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/ridgeback_frontier_exploration/install.log'

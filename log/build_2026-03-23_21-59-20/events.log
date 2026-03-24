@@ -1,0 +1,562 @@
+[0.000000] (-) TimerEvent: {}
+[0.000146] (-) JobUnselected: {'identifier': 'multirobot_map_merge'}
+[0.000278] (-) JobUnselected: {'identifier': 'ridgeback_frontier_exploration'}
+[0.000298] (explore_lite_msgs) JobQueued: {'identifier': 'explore_lite_msgs', 'dependencies': OrderedDict()}
+[0.000314] (explore_lite) JobQueued: {'identifier': 'explore_lite', 'dependencies': OrderedDict({'explore_lite_msgs': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs'})}
+[0.000544] (explore_lite_msgs) JobStarted: {'identifier': 'explore_lite_msgs'}
+[0.009425] (explore_lite_msgs) JobProgress: {'identifier': 'explore_lite_msgs', 'progress': 'cmake'}
+[0.009839] (explore_lite_msgs) Command: {'cmd': ['/usr/bin/cmake', '/home/czika-stefania/Documents/DyNAMO/DyNAMO/src/m-explore-ros2/explore_lite_msgs', '-DCMAKE_INSTALL_PREFIX=/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs'], 'cwd': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/explore_lite_msgs', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'czika-stefania', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'XDG_SESSION_TYPE': 'x11', 'CLUTTER_DISABLE_MIPMAPPED_TEXT': '1', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/czika-stefania', 'OLDPWD': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/src', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'SYSTEMD_EXEC_PID': '2546', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'COLCON_PREFIX_PATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'czika-stefania', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.Shell@x11.service/memory.pressure', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'czika-stefania', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'WINDOWPATH': '2', 'PATH': '/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/czika-stefania-Vivobook-ASUSLaptop-K3605ZC-V3605ZC:@/tmp/.ICE-unix/2466,unix/czika-stefania-Vivobook-ASUSLaptop-K3605ZC-V3605ZC:/tmp/.ICE-unix/2466', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/5890d9fb_49a8_4459_a49d_9c0ceb5ecf7d', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':1', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'GNOME_TERMINAL_SERVICE': ':1.274', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration:/opt/ros/jazzy', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/explore_lite_msgs', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'VTE_VERSION': '7600', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration:/opt/ros/jazzy'}), 'shell': False}
+[0.064471] (explore_lite_msgs) StdoutLine: {'line': b'-- The C compiler identification is GNU 13.3.0\n'}
+[0.099787] (-) TimerEvent: {}
+[0.114725] (explore_lite_msgs) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 13.3.0\n'}
+[0.131588] (explore_lite_msgs) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.199948] (-) TimerEvent: {}
+[0.225147] (explore_lite_msgs) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.235171] (explore_lite_msgs) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.235484] (explore_lite_msgs) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.235704] (explore_lite_msgs) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.245384] (explore_lite_msgs) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.300035] (-) TimerEvent: {}
+[0.352728] (explore_lite_msgs) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.363942] (explore_lite_msgs) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.364237] (explore_lite_msgs) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.364745] (explore_lite_msgs) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.368499] (explore_lite_msgs) StdoutLine: {'line': b'-- Found ament_cmake: 2.5.5 (/opt/ros/jazzy/share/ament_cmake/cmake)\n'}
+[0.400121] (-) TimerEvent: {}
+[0.500384] (-) TimerEvent: {}
+[0.530512] (explore_lite_msgs) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter \n'}
+[0.600476] (-) TimerEvent: {}
+[0.657642] (explore_lite_msgs) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.6.0 (/opt/ros/jazzy/share/rosidl_default_generators/cmake)\n'}
+[0.665025] (explore_lite_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.700656] (-) TimerEvent: {}
+[0.727269] (explore_lite_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.780589] (explore_lite_msgs) StdoutLine: {'line': b'-- Found rosidl_adapter: 4.6.7 (/opt/ros/jazzy/share/rosidl_adapter/cmake)\n'}
+[0.800781] (-) TimerEvent: {}
+[0.901040] (-) TimerEvent: {}
+[1.001538] (-) TimerEvent: {}
+[1.101863] (-) TimerEvent: {}
+[1.202120] (-) TimerEvent: {}
+[1.302446] (-) TimerEvent: {}
+[1.385824] (explore_lite_msgs) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.12.0 (/opt/ros/jazzy/share/ament_cmake_ros/cmake)\n'}
+[1.402616] (-) TimerEvent: {}
+[1.502952] (-) TimerEvent: {}
+[1.603315] (-) TimerEvent: {}
+[1.703698] (-) TimerEvent: {}
+[1.778674] (explore_lite_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[1.803863] (-) TimerEvent: {}
+[1.904340] (-) TimerEvent: {}
+[2.004631] (-) TimerEvent: {}
+[2.104851] (-) TimerEvent: {}
+[2.205226] (-) TimerEvent: {}
+[2.305622] (-) TimerEvent: {}
+[2.317570] (explore_lite_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[2.321096] (explore_lite_msgs) StdoutLine: {'line': b'-- Found python_cmake_module: 0.11.1 (/opt/ros/jazzy/share/python_cmake_module/cmake)\n'}
+[2.405816] (-) TimerEvent: {}
+[2.455827] (explore_lite_msgs) StdoutLine: {'line': b'-- Found PythonExtra: /usr/bin/python3  \n'}
+[2.505915] (-) TimerEvent: {}
+[2.606242] (-) TimerEvent: {}
+[2.706485] (-) TimerEvent: {}
+[2.806803] (-) TimerEvent: {}
+[2.907150] (-) TimerEvent: {}
+[2.939854] (explore_lite_msgs) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter Development NumPy Development.Module Development.Embed \n'}
+[2.981821] (explore_lite_msgs) StdoutLine: {'line': b'-- Configuring done (3.0s)\n'}
+[3.007377] (-) TimerEvent: {}
+[3.009485] (explore_lite_msgs) StdoutLine: {'line': b'-- Generating done (0.0s)\n'}
+[3.019635] (explore_lite_msgs) StdoutLine: {'line': b'-- Build files have been written to: /home/czika-stefania/Documents/DyNAMO/DyNAMO/build/explore_lite_msgs\n'}
+[3.027012] (explore_lite_msgs) CommandEnded: {'returncode': 0}
+[3.027524] (explore_lite_msgs) JobProgress: {'identifier': 'explore_lite_msgs', 'progress': 'build'}
+[3.028097] (explore_lite_msgs) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/explore_lite_msgs', '--', '-j20', '-l20'], 'cwd': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/explore_lite_msgs', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'czika-stefania', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'XDG_SESSION_TYPE': 'x11', 'CLUTTER_DISABLE_MIPMAPPED_TEXT': '1', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/czika-stefania', 'OLDPWD': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/src', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'SYSTEMD_EXEC_PID': '2546', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'COLCON_PREFIX_PATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'czika-stefania', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.Shell@x11.service/memory.pressure', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'czika-stefania', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'WINDOWPATH': '2', 'PATH': '/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/czika-stefania-Vivobook-ASUSLaptop-K3605ZC-V3605ZC:@/tmp/.ICE-unix/2466,unix/czika-stefania-Vivobook-ASUSLaptop-K3605ZC-V3605ZC:/tmp/.ICE-unix/2466', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/5890d9fb_49a8_4459_a49d_9c0ceb5ecf7d', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':1', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'GNOME_TERMINAL_SERVICE': ':1.274', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration:/opt/ros/jazzy', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/explore_lite_msgs', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'VTE_VERSION': '7600', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration:/opt/ros/jazzy'}), 'shell': False}
+[3.087095] (explore_lite_msgs) StdoutLine: {'line': b'[  2%] \x1b[34m\x1b[1mGenerating type hashes for ROS interfaces\x1b[0m\n'}
+[3.095720] (explore_lite_msgs) StdoutLine: {'line': b'[  2%] Built target ament_cmake_python_copy_explore_lite_msgs\n'}
+[3.107432] (-) TimerEvent: {}
+[3.207733] (-) TimerEvent: {}
+[3.308370] (-) TimerEvent: {}
+[3.329374] (explore_lite_msgs) StdoutLine: {'line': b'[  2%] Built target explore_lite_msgs__rosidl_generator_type_description\n'}
+[3.341951] (explore_lite_msgs) StdoutLine: {'line': b'[  5%] \x1b[34m\x1b[1mGenerating C code for ROS interfaces\x1b[0m\n'}
+[3.345343] (explore_lite_msgs) StdoutLine: {'line': b'running egg_info\n'}
+[3.346417] (explore_lite_msgs) StdoutLine: {'line': b'creating explore_lite_msgs.egg-info\n'}
+[3.352279] (explore_lite_msgs) StdoutLine: {'line': b'[  8%] \x1b[34m\x1b[1mGenerating C++ code for ROS interfaces\x1b[0m\n'}
+[3.364651] (explore_lite_msgs) StdoutLine: {'line': b'writing explore_lite_msgs.egg-info/PKG-INFO\n'}
+[3.364947] (explore_lite_msgs) StdoutLine: {'line': b'writing dependency_links to explore_lite_msgs.egg-info/dependency_links.txt\n'}
+[3.365107] (explore_lite_msgs) StdoutLine: {'line': b'writing top-level names to explore_lite_msgs.egg-info/top_level.txt\n'}
+[3.365360] (explore_lite_msgs) StdoutLine: {'line': b"writing manifest file 'explore_lite_msgs.egg-info/SOURCES.txt'\n"}
+[3.408411] (-) TimerEvent: {}
+[3.424040] (explore_lite_msgs) StdoutLine: {'line': b"reading manifest file 'explore_lite_msgs.egg-info/SOURCES.txt'\n"}
+[3.424906] (explore_lite_msgs) StdoutLine: {'line': b"writing manifest file 'explore_lite_msgs.egg-info/SOURCES.txt'\n"}
+[3.473060] (explore_lite_msgs) StdoutLine: {'line': b'[  8%] Built target ament_cmake_python_build_explore_lite_msgs_egg\n'}
+[3.508574] (-) TimerEvent: {}
+[3.608933] (-) TimerEvent: {}
+[3.645765] (explore_lite_msgs) StdoutLine: {'line': b'[  8%] Built target explore_lite_msgs__cpp\n'}
+[3.654011] (explore_lite_msgs) StdoutLine: {'line': b'[ 17%] \x1b[32mBuilding C object CMakeFiles/explore_lite_msgs__rosidl_generator_c.dir/rosidl_generator_c/explore_lite_msgs/msg/detail/explore_status__functions.c.o\x1b[0m\n'}
+[3.654403] (explore_lite_msgs) StdoutLine: {'line': b'[ 17%] \x1b[32mBuilding C object CMakeFiles/explore_lite_msgs__rosidl_generator_c.dir/rosidl_generator_c/explore_lite_msgs/msg/detail/explore_status__type_support.c.o\x1b[0m\n'}
+[3.654523] (explore_lite_msgs) StdoutLine: {'line': b'[ 17%] \x1b[32mBuilding C object CMakeFiles/explore_lite_msgs__rosidl_generator_c.dir/rosidl_generator_c/explore_lite_msgs/msg/detail/explore_status__description.c.o\x1b[0m\n'}
+[3.709100] (-) TimerEvent: {}
+[3.713949] (explore_lite_msgs) StdoutLine: {'line': b'[ 20%] \x1b[32m\x1b[1mLinking C shared library libexplore_lite_msgs__rosidl_generator_c.so\x1b[0m\n'}
+[3.758297] (explore_lite_msgs) StdoutLine: {'line': b'[ 20%] Built target explore_lite_msgs__rosidl_generator_c\n'}
+[3.768988] (explore_lite_msgs) StdoutLine: {'line': b'[ 23%] \x1b[34m\x1b[1mGenerating C introspection for ROS interfaces\x1b[0m\n'}
+[3.769335] (explore_lite_msgs) StdoutLine: {'line': b'[ 29%] \x1b[34m\x1b[1mGenerating C++ type support for eProsima Fast-RTPS\x1b[0m\n'}
+[3.769555] (explore_lite_msgs) StdoutLine: {'line': b'[ 29%] \x1b[34m\x1b[1mGenerating C type support for eProsima Fast-RTPS\x1b[0m\n'}
+[3.769837] (explore_lite_msgs) StdoutLine: {'line': b'[ 32%] \x1b[34m\x1b[1mGenerating C++ type support dispatch for ROS interfaces\x1b[0m\n'}
+[3.770059] (explore_lite_msgs) StdoutLine: {'line': b'[ 35%] \x1b[34m\x1b[1mGenerating C type support dispatch for ROS interfaces\x1b[0m\n'}
+[3.770256] (explore_lite_msgs) StdoutLine: {'line': b'[ 38%] \x1b[34m\x1b[1mGenerating C++ introspection for ROS interfaces\x1b[0m\n'}
+[3.809302] (-) TimerEvent: {}
+[3.909942] (-) TimerEvent: {}
+[4.010495] (-) TimerEvent: {}
+[4.018930] (explore_lite_msgs) StdoutLine: {'line': b'[ 41%] \x1b[32mBuilding CXX object CMakeFiles/explore_lite_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/explore_lite_msgs/msg/explore_status__type_support.cpp.o\x1b[0m\n'}
+[4.037155] (explore_lite_msgs) StdoutLine: {'line': b'[ 44%] \x1b[32mBuilding CXX object CMakeFiles/explore_lite_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/explore_lite_msgs/msg/explore_status__type_support.cpp.o\x1b[0m\n'}
+[4.047809] (explore_lite_msgs) StdoutLine: {'line': b'[ 47%] \x1b[32mBuilding CXX object CMakeFiles/explore_lite_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/explore_lite_msgs/msg/detail/explore_status__type_support.cpp.o\x1b[0m\n'}
+[4.049740] (explore_lite_msgs) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/explore_lite_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/explore_lite_msgs/msg/detail/dds_fastrtps/explore_status__type_support.cpp.o\x1b[0m\n'}
+[4.060152] (explore_lite_msgs) StdoutLine: {'line': b'[ 52%] \x1b[32mBuilding CXX object CMakeFiles/explore_lite_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/explore_lite_msgs/msg/detail/explore_status__type_support_c.cpp.o\x1b[0m\n'}
+[4.067593] (explore_lite_msgs) StdoutLine: {'line': b'[ 55%] \x1b[32mBuilding C object CMakeFiles/explore_lite_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/explore_lite_msgs/msg/detail/explore_status__type_support.c.o\x1b[0m\n'}
+[4.079384] (explore_lite_msgs) StdoutLine: {'line': b'[ 58%] \x1b[32m\x1b[1mLinking CXX shared library libexplore_lite_msgs__rosidl_typesupport_c.so\x1b[0m\n'}
+[4.102252] (explore_lite_msgs) StdoutLine: {'line': b'[ 61%] \x1b[32m\x1b[1mLinking C shared library libexplore_lite_msgs__rosidl_typesupport_introspection_c.so\x1b[0m\n'}
+[4.110617] (-) TimerEvent: {}
+[4.127062] (explore_lite_msgs) StdoutLine: {'line': b'[ 61%] Built target explore_lite_msgs__rosidl_typesupport_c\n'}
+[4.141362] (explore_lite_msgs) StdoutLine: {'line': b'[ 61%] Built target explore_lite_msgs__rosidl_typesupport_introspection_c\n'}
+[4.210717] (-) TimerEvent: {}
+[4.301177] (explore_lite_msgs) StdoutLine: {'line': b'[ 64%] \x1b[32m\x1b[1mLinking CXX shared library libexplore_lite_msgs__rosidl_typesupport_cpp.so\x1b[0m\n'}
+[4.307706] (explore_lite_msgs) StdoutLine: {'line': b'[ 67%] \x1b[32m\x1b[1mLinking CXX shared library libexplore_lite_msgs__rosidl_typesupport_introspection_cpp.so\x1b[0m\n'}
+[4.310931] (-) TimerEvent: {}
+[4.357044] (explore_lite_msgs) StdoutLine: {'line': b'[ 67%] Built target explore_lite_msgs__rosidl_typesupport_cpp\n'}
+[4.392276] (explore_lite_msgs) StdoutLine: {'line': b'[ 67%] Built target explore_lite_msgs__rosidl_typesupport_introspection_cpp\n'}
+[4.411051] (-) TimerEvent: {}
+[4.470723] (explore_lite_msgs) StdoutLine: {'line': b'[ 70%] \x1b[32m\x1b[1mLinking CXX shared library libexplore_lite_msgs__rosidl_typesupport_fastrtps_c.so\x1b[0m\n'}
+[4.474172] (explore_lite_msgs) StdoutLine: {'line': b'[ 73%] \x1b[32m\x1b[1mLinking CXX shared library libexplore_lite_msgs__rosidl_typesupport_fastrtps_cpp.so\x1b[0m\n'}
+[4.511157] (-) TimerEvent: {}
+[4.564584] (explore_lite_msgs) StdoutLine: {'line': b'[ 73%] Built target explore_lite_msgs__rosidl_typesupport_fastrtps_c\n'}
+[4.567887] (explore_lite_msgs) StdoutLine: {'line': b'[ 73%] Built target explore_lite_msgs__rosidl_typesupport_fastrtps_cpp\n'}
+[4.591211] (explore_lite_msgs) StdoutLine: {'line': b'[ 73%] Built target explore_lite_msgs\n'}
+[4.611305] (-) TimerEvent: {}
+[4.612376] (explore_lite_msgs) StdoutLine: {'line': b'[ 76%] \x1b[34m\x1b[1mGenerating Python code for ROS interfaces\x1b[0m\n'}
+[4.711392] (-) TimerEvent: {}
+[4.811628] (-) TimerEvent: {}
+[4.901323] (explore_lite_msgs) StdoutLine: {'line': b'[ 76%] Built target explore_lite_msgs__py\n'}
+[4.911865] (-) TimerEvent: {}
+[4.934531] (explore_lite_msgs) StdoutLine: {'line': b'[ 79%] \x1b[32mBuilding C object CMakeFiles/explore_lite_msgs__rosidl_generator_py.dir/rosidl_generator_py/explore_lite_msgs/msg/_explore_status_s.c.o\x1b[0m\n'}
+[5.011949] (-) TimerEvent: {}
+[5.050655] (explore_lite_msgs) StdoutLine: {'line': b'[ 82%] \x1b[32m\x1b[1mLinking C shared library libexplore_lite_msgs__rosidl_generator_py.so\x1b[0m\n'}
+[5.101577] (explore_lite_msgs) StdoutLine: {'line': b'[ 82%] Built target explore_lite_msgs__rosidl_generator_py\n'}
+[5.112079] (-) TimerEvent: {}
+[5.128642] (explore_lite_msgs) StdoutLine: {'line': b'[ 85%] \x1b[32mBuilding C object CMakeFiles/explore_lite_msgs_s__rosidl_typesupport_c.dir/rosidl_generator_py/explore_lite_msgs/_explore_lite_msgs_s.ep.rosidl_typesupport_c.c.o\x1b[0m\n'}
+[5.130223] (explore_lite_msgs) StdoutLine: {'line': b'[ 91%] \x1b[32mBuilding C object CMakeFiles/explore_lite_msgs_s__rosidl_typesupport_fastrtps_c.dir/rosidl_generator_py/explore_lite_msgs/_explore_lite_msgs_s.ep.rosidl_typesupport_fastrtps_c.c.o\x1b[0m\n'}
+[5.130344] (explore_lite_msgs) StdoutLine: {'line': b'[ 91%] \x1b[32mBuilding C object CMakeFiles/explore_lite_msgs_s__rosidl_typesupport_introspection_c.dir/rosidl_generator_py/explore_lite_msgs/_explore_lite_msgs_s.ep.rosidl_typesupport_introspection_c.c.o\x1b[0m\n'}
+[5.212196] (-) TimerEvent: {}
+[5.236608] (explore_lite_msgs) StdoutLine: {'line': b'[ 94%] \x1b[32m\x1b[1mLinking C shared module rosidl_generator_py/explore_lite_msgs/explore_lite_msgs_s__rosidl_typesupport_introspection_c.so\x1b[0m\n'}
+[5.242719] (explore_lite_msgs) StdoutLine: {'line': b'[ 97%] \x1b[32m\x1b[1mLinking C shared module rosidl_generator_py/explore_lite_msgs/explore_lite_msgs_s__rosidl_typesupport_c.so\x1b[0m\n'}
+[5.275571] (explore_lite_msgs) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking C shared module rosidl_generator_py/explore_lite_msgs/explore_lite_msgs_s__rosidl_typesupport_fastrtps_c.so\x1b[0m\n'}
+[5.284182] (explore_lite_msgs) StdoutLine: {'line': b'[100%] Built target explore_lite_msgs_s__rosidl_typesupport_introspection_c\n'}
+[5.285834] (explore_lite_msgs) StdoutLine: {'line': b'[100%] Built target explore_lite_msgs_s__rosidl_typesupport_c\n'}
+[5.312302] (-) TimerEvent: {}
+[5.322854] (explore_lite_msgs) StdoutLine: {'line': b'[100%] Built target explore_lite_msgs_s__rosidl_typesupport_fastrtps_c\n'}
+[5.338753] (explore_lite_msgs) CommandEnded: {'returncode': 0}
+[5.339804] (explore_lite_msgs) JobProgress: {'identifier': 'explore_lite_msgs', 'progress': 'install'}
+[5.358922] (explore_lite_msgs) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/explore_lite_msgs'], 'cwd': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/explore_lite_msgs', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'czika-stefania', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'XDG_SESSION_TYPE': 'x11', 'CLUTTER_DISABLE_MIPMAPPED_TEXT': '1', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/czika-stefania', 'OLDPWD': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/src', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'SYSTEMD_EXEC_PID': '2546', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'COLCON_PREFIX_PATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'czika-stefania', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.Shell@x11.service/memory.pressure', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'czika-stefania', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'WINDOWPATH': '2', 'PATH': '/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/czika-stefania-Vivobook-ASUSLaptop-K3605ZC-V3605ZC:@/tmp/.ICE-unix/2466,unix/czika-stefania-Vivobook-ASUSLaptop-K3605ZC-V3605ZC:/tmp/.ICE-unix/2466', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/5890d9fb_49a8_4459_a49d_9c0ceb5ecf7d', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':1', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'GNOME_TERMINAL_SERVICE': ':1.274', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration:/opt/ros/jazzy', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/explore_lite_msgs', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'VTE_VERSION': '7600', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration:/opt/ros/jazzy'}), 'shell': False}
+[5.372422] (explore_lite_msgs) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[5.372718] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/ament_index/resource_index/rosidl_interfaces/explore_lite_msgs\n'}
+[5.372814] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/msg/ExploreStatus.json\n'}
+[5.372928] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs\n'}
+[5.373304] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg\n'}
+[5.373464] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/explore_status.h\n'}
+[5.373581] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail\n'}
+[5.373717] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail/explore_status__functions.h\n'}
+[5.373824] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail/explore_status__type_support.c\n'}
+[5.373930] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail/explore_status__description.c\n'}
+[5.374017] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail/explore_status__functions.c\n'}
+[5.374161] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail/explore_status__type_support.h\n'}
+[5.374224] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail/explore_status__struct.h\n'}
+[5.374308] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/rosidl_generator_c__visibility_control.h\n'}
+[5.374376] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/environment/library_path.sh\n'}
+[5.374435] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/environment/library_path.dsv\n'}
+[5.374536] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/libexplore_lite_msgs__rosidl_generator_c.so\n'}
+[5.374616] (explore_lite_msgs) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/libexplore_lite_msgs__rosidl_generator_c.so" to ""\n'}
+[5.374722] (explore_lite_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs\n'}
+[5.374785] (explore_lite_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg\n'}
+[5.374862] (explore_lite_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail\n'}
+[5.374968] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail/explore_status__rosidl_typesupport_fastrtps_c.h\n'}
+[5.375032] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[5.375093] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/libexplore_lite_msgs__rosidl_typesupport_fastrtps_c.so\n'}
+[5.375208] (explore_lite_msgs) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/libexplore_lite_msgs__rosidl_typesupport_fastrtps_c.so" to ""\n'}
+[5.375302] (explore_lite_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs\n'}
+[5.375424] (explore_lite_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg\n'}
+[5.375558] (explore_lite_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail\n'}
+[5.375786] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail/explore_status__rosidl_typesupport_introspection_c.h\n'}
+[5.375893] (explore_lite_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail/explore_status__type_support.c\n'}
+[5.376319] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[5.376515] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/libexplore_lite_msgs__rosidl_typesupport_introspection_c.so\n'}
+[5.376604] (explore_lite_msgs) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/libexplore_lite_msgs__rosidl_typesupport_introspection_c.so" to ""\n'}
+[5.376684] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/libexplore_lite_msgs__rosidl_typesupport_c.so\n'}
+[5.376805] (explore_lite_msgs) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/libexplore_lite_msgs__rosidl_typesupport_c.so" to ""\n'}
+[5.376908] (explore_lite_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs\n'}
+[5.377029] (explore_lite_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg\n'}
+[5.377105] (explore_lite_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail\n'}
+[5.377226] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail/explore_status__struct.hpp\n'}
+[5.377282] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail/explore_status__traits.hpp\n'}
+[5.377333] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail/explore_status__builder.hpp\n'}
+[5.377381] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail/explore_status__type_support.hpp\n'}
+[5.377432] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/explore_status.hpp\n'}
+[5.377535] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[5.377644] (explore_lite_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs\n'}
+[5.377708] (explore_lite_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg\n'}
+[5.377764] (explore_lite_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail\n'}
+[5.377827] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail/explore_status__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[5.377892] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail/dds_fastrtps\n'}
+[5.378045] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[5.378170] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/libexplore_lite_msgs__rosidl_typesupport_fastrtps_cpp.so\n'}
+[5.378238] (explore_lite_msgs) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/libexplore_lite_msgs__rosidl_typesupport_fastrtps_cpp.so" to ""\n'}
+[5.378298] (explore_lite_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs\n'}
+[5.378352] (explore_lite_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg\n'}
+[5.378408] (explore_lite_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail\n'}
+[5.378462] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail/explore_status__type_support.cpp\n'}
+[5.378515] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/include/explore_lite_msgs/explore_lite_msgs/msg/detail/explore_status__rosidl_typesupport_introspection_cpp.hpp\n'}
+[5.378568] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/libexplore_lite_msgs__rosidl_typesupport_introspection_cpp.so\n'}
+[5.378741] (explore_lite_msgs) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/libexplore_lite_msgs__rosidl_typesupport_introspection_cpp.so" to ""\n'}
+[5.378859] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/libexplore_lite_msgs__rosidl_typesupport_cpp.so\n'}
+[5.378912] (explore_lite_msgs) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/libexplore_lite_msgs__rosidl_typesupport_cpp.so" to ""\n'}
+[5.378978] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/environment/pythonpath.sh\n'}
+[5.379049] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/environment/pythonpath.dsv\n'}
+[5.379101] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs-1.0.0-py3.12.egg-info\n'}
+[5.379161] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs-1.0.0-py3.12.egg-info/dependency_links.txt\n'}
+[5.379217] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs-1.0.0-py3.12.egg-info/PKG-INFO\n'}
+[5.379288] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs-1.0.0-py3.12.egg-info/top_level.txt\n'}
+[5.379378] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs-1.0.0-py3.12.egg-info/SOURCES.txt\n'}
+[5.379435] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs\n'}
+[5.379489] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs/msg\n'}
+[5.379540] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs/msg/_explore_status.py\n'}
+[5.379610] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs/msg/_explore_status_s.c\n'}
+[5.379689] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs/msg/__init__.py\n'}
+[5.379742] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs/explore_lite_msgs_s__rosidl_typesupport_c.so\n'}
+[5.379795] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs/_explore_lite_msgs_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[5.379855] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs/explore_lite_msgs_s__rosidl_typesupport_fastrtps_c.so\n'}
+[5.379936] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs/__init__.py\n'}
+[5.380020] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs/_explore_lite_msgs_s.ep.rosidl_typesupport_c.c\n'}
+[5.380070] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs/_explore_lite_msgs_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[5.380118] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs/explore_lite_msgs_s__rosidl_typesupport_introspection_c.so\n'}
+[5.412517] (-) TimerEvent: {}
+[5.445182] (explore_lite_msgs) StdoutLine: {'line': b"Listing '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs'...\n"}
+[5.445613] (explore_lite_msgs) StdoutLine: {'line': b"Compiling '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs/__init__.py'...\n"}
+[5.445775] (explore_lite_msgs) StdoutLine: {'line': b"Listing '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs/msg'...\n"}
+[5.445937] (explore_lite_msgs) StdoutLine: {'line': b"Compiling '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs/msg/__init__.py'...\n"}
+[5.446077] (explore_lite_msgs) StdoutLine: {'line': b"Compiling '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs/msg/_explore_status.py'...\n"}
+[5.458472] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs/explore_lite_msgs_s__rosidl_typesupport_fastrtps_c.so\n'}
+[5.458920] (explore_lite_msgs) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs/explore_lite_msgs_s__rosidl_typesupport_fastrtps_c.so" to ""\n'}
+[5.459103] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs/explore_lite_msgs_s__rosidl_typesupport_introspection_c.so\n'}
+[5.459400] (explore_lite_msgs) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs/explore_lite_msgs_s__rosidl_typesupport_introspection_c.so" to ""\n'}
+[5.459565] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs/explore_lite_msgs_s__rosidl_typesupport_c.so\n'}
+[5.459665] (explore_lite_msgs) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages/explore_lite_msgs/explore_lite_msgs_s__rosidl_typesupport_c.so" to ""\n'}
+[5.459736] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/libexplore_lite_msgs__rosidl_generator_py.so\n'}
+[5.459901] (explore_lite_msgs) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/libexplore_lite_msgs__rosidl_generator_py.so" to ""\n'}
+[5.459994] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/msg/ExploreStatus.idl\n'}
+[5.460069] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/msg/ExploreStatus.msg\n'}
+[5.460136] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/ament_index/resource_index/package_run_dependencies/explore_lite_msgs\n'}
+[5.460238] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/ament_index/resource_index/parent_prefix_path/explore_lite_msgs\n'}
+[5.460325] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/environment/ament_prefix_path.sh\n'}
+[5.460439] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/environment/ament_prefix_path.dsv\n'}
+[5.460519] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/environment/path.sh\n'}
+[5.460647] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/environment/path.dsv\n'}
+[5.460746] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/local_setup.bash\n'}
+[5.460872] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/local_setup.sh\n'}
+[5.461017] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/local_setup.zsh\n'}
+[5.461219] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/local_setup.dsv\n'}
+[5.461345] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/package.dsv\n'}
+[5.461447] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/ament_index/resource_index/packages/explore_lite_msgs\n'}
+[5.461566] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/export_explore_lite_msgs__rosidl_generator_cExport.cmake\n'}
+[5.461648] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/export_explore_lite_msgs__rosidl_generator_cExport-noconfig.cmake\n'}
+[5.461756] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/export_explore_lite_msgs__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[5.462008] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/export_explore_lite_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[5.462071] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/explore_lite_msgs__rosidl_typesupport_introspection_cExport.cmake\n'}
+[5.462145] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/explore_lite_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[5.462362] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/explore_lite_msgs__rosidl_typesupport_cExport.cmake\n'}
+[5.462534] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/explore_lite_msgs__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[5.462755] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/export_explore_lite_msgs__rosidl_generator_cppExport.cmake\n'}
+[5.462893] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/export_explore_lite_msgs__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[5.464027] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/export_explore_lite_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[5.464241] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/explore_lite_msgs__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[5.464308] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/explore_lite_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[5.464372] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/explore_lite_msgs__rosidl_typesupport_cppExport.cmake\n'}
+[5.464435] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/explore_lite_msgs__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[5.464505] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/export_explore_lite_msgs__rosidl_generator_pyExport.cmake\n'}
+[5.464563] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/export_explore_lite_msgs__rosidl_generator_pyExport-noconfig.cmake\n'}
+[5.464635] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/rosidl_cmake-extras.cmake\n'}
+[5.464701] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[5.464776] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[5.464830] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[5.464928] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[5.465069] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[5.465178] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[5.465263] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/explore_lite_msgsConfig.cmake\n'}
+[5.465407] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake/explore_lite_msgsConfig-version.cmake\n'}
+[5.465548] (explore_lite_msgs) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/package.xml\n'}
+[5.467668] (explore_lite_msgs) CommandEnded: {'returncode': 0}
+[5.493311] (explore_lite_msgs) JobEnded: {'identifier': 'explore_lite_msgs', 'rc': 0}
+[5.495123] (explore_lite) JobStarted: {'identifier': 'explore_lite'}
+[5.505195] (explore_lite) JobProgress: {'identifier': 'explore_lite', 'progress': 'cmake'}
+[5.506080] (explore_lite) Command: {'cmd': ['/usr/bin/cmake', '/home/czika-stefania/Documents/DyNAMO/DyNAMO/src/m-explore-ros2/explore', '-DCMAKE_INSTALL_PREFIX=/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite'], 'cwd': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/explore_lite', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'czika-stefania', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'XDG_SESSION_TYPE': 'x11', 'CLUTTER_DISABLE_MIPMAPPED_TEXT': '1', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib:/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/czika-stefania', 'OLDPWD': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/src', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'SYSTEMD_EXEC_PID': '2546', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'COLCON_PREFIX_PATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'czika-stefania', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.Shell@x11.service/memory.pressure', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'czika-stefania', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'WINDOWPATH': '2', 'PATH': '/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/czika-stefania-Vivobook-ASUSLaptop-K3605ZC-V3605ZC:@/tmp/.ICE-unix/2466,unix/czika-stefania-Vivobook-ASUSLaptop-K3605ZC-V3605ZC:/tmp/.ICE-unix/2466', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/5890d9fb_49a8_4459_a49d_9c0ceb5ecf7d', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':1', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'GNOME_TERMINAL_SERVICE': ':1.274', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs:/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration:/opt/ros/jazzy', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/explore_lite', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages:/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'VTE_VERSION': '7600', 'CMAKE_PREFIX_PATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration:/opt/ros/jazzy'}), 'shell': False}
+[5.512690] (-) TimerEvent: {}
+[5.585243] (explore_lite) StdoutLine: {'line': b'-- The C compiler identification is GNU 13.3.0\n'}
+[5.612897] (-) TimerEvent: {}
+[5.645092] (explore_lite) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 13.3.0\n'}
+[5.664378] (explore_lite) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[5.713090] (-) TimerEvent: {}
+[5.773475] (explore_lite) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[5.781761] (explore_lite) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[5.781930] (explore_lite) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[5.782312] (explore_lite) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[5.795063] (explore_lite) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[5.813197] (-) TimerEvent: {}
+[5.900012] (explore_lite) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[5.908147] (explore_lite) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[5.908433] (explore_lite) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[5.908857] (explore_lite) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[5.909555] (explore_lite) StdoutLine: {'line': b'-- BuilD for ROS2: jazzy\n'}
+[5.912055] (explore_lite) StdoutLine: {'line': b'-- Found ament_cmake: 2.5.5 (/opt/ros/jazzy/share/ament_cmake/cmake)\n'}
+[5.913264] (-) TimerEvent: {}
+[6.013440] (-) TimerEvent: {}
+[6.062827] (explore_lite) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter \n'}
+[6.113525] (-) TimerEvent: {}
+[6.175379] (explore_lite) StdoutLine: {'line': b'-- Found rclcpp: 28.1.16 (/opt/ros/jazzy/share/rclcpp/cmake)\n'}
+[6.213628] (-) TimerEvent: {}
+[6.225286] (explore_lite) StdoutLine: {'line': b'-- Found rosidl_generator_c: 4.6.7 (/opt/ros/jazzy/share/rosidl_generator_c/cmake)\n'}
+[6.239748] (explore_lite) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 4.6.7 (/opt/ros/jazzy/share/rosidl_generator_cpp/cmake)\n'}
+[6.256895] (explore_lite) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[6.276762] (explore_lite) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[6.313779] (-) TimerEvent: {}
+[6.359341] (explore_lite) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 7.3.3 (/opt/ros/jazzy/share/rmw_implementation_cmake/cmake)\n'}
+[6.363523] (explore_lite) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 8.4.3 (/opt/ros/jazzy/share/rmw_fastrtps_cpp/cmake)\n'}
+[6.413877] (-) TimerEvent: {}
+[6.453228] (explore_lite) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.13")  \n'}
+[6.475431] (explore_lite) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/jazzy/include (Required is at least version "2.13") \n'}
+[6.498322] (explore_lite) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[6.513987] (-) TimerEvent: {}
+[6.572574] (explore_lite) StdoutLine: {'line': b'-- Found std_msgs: 5.3.6 (/opt/ros/jazzy/share/std_msgs/cmake)\n'}
+[6.586162] (explore_lite) StdoutLine: {'line': b'-- Found sensor_msgs: 5.3.6 (/opt/ros/jazzy/share/sensor_msgs/cmake)\n'}
+[6.614142] (-) TimerEvent: {}
+[6.624447] (explore_lite) StdoutLine: {'line': b'-- Found tf2_ros: 0.36.19 (/opt/ros/jazzy/share/tf2_ros/cmake)\n'}
+[6.714218] (-) TimerEvent: {}
+[6.752073] (explore_lite) StdoutLine: {'line': b'-- Found tf2_geometry_msgs: 0.36.19 (/opt/ros/jazzy/share/tf2_geometry_msgs/cmake)\n'}
+[6.769214] (explore_lite) StdoutLine: {'line': b'-- Found eigen3_cmake_module: 0.3.0 (/opt/ros/jazzy/share/eigen3_cmake_module/cmake)\n'}
+[6.770449] (explore_lite) StdoutLine: {'line': b'-- Found Eigen3: TRUE (found version "3.4.0") \n'}
+[6.770563] (explore_lite) StdoutLine: {'line': b'-- Ensuring Eigen3 include directory is part of orocos-kdl CMake target\n'}
+[6.774456] (explore_lite) StdoutLine: {'line': b'-- Found nav2_msgs: 1.3.10 (/opt/ros/jazzy/share/nav2_msgs/cmake)\n'}
+[6.814320] (-) TimerEvent: {}
+[6.878452] (explore_lite) StdoutLine: {'line': b'-- Found map_msgs: 2.4.1 (/opt/ros/jazzy/share/map_msgs/cmake)\n'}
+[6.907230] (explore_lite) StdoutLine: {'line': b'-- Found visualization_msgs: 5.3.6 (/opt/ros/jazzy/share/visualization_msgs/cmake)\n'}
+[6.914512] (-) TimerEvent: {}
+[6.932717] (explore_lite) StdoutLine: {'line': b'-- Found nav2_costmap_2d: 1.3.10 (/opt/ros/jazzy/share/nav2_costmap_2d/cmake)\n'}
+[7.014693] (-) TimerEvent: {}
+[7.066621] (explore_lite) StdoutLine: {'line': b'-- Found explore_lite_msgs: 1.0.0 (/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/share/explore_lite_msgs/cmake)\n'}
+[7.076793] (explore_lite) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.17.4 (/opt/ros/jazzy/share/ament_lint_auto/cmake)\n'}
+[7.114794] (-) TimerEvent: {}
+[7.179702] (explore_lite) StdoutLine: {'line': b'-- Found ament_cmake_gtest: 2.5.5 (/opt/ros/jazzy/share/ament_cmake_gtest/cmake)\n'}
+[7.183270] (explore_lite) StdoutLine: {'line': b"-- Found gtest sources under '/opt/ros/jazzy/src/gtest_vendor': C++ tests using 'Google Test' will be built\n"}
+[7.186316] (explore_lite) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[7.214932] (-) TimerEvent: {}
+[7.267129] (explore_lite) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[7.268095] (explore_lite) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[7.272230] (explore_lite) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[7.272499] (explore_lite) StdoutLine: {'line': b'-- Configured cppcheck include dirs: /home/czika-stefania/Documents/DyNAMO/DyNAMO/src/m-explore-ros2/explore/include;$<BUILD_INTERFACE:/home/czika-stefania/Documents/DyNAMO/DyNAMO/src/m-explore-ros2/explore/include>\n'}
+[7.272554] (explore_lite) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[7.273405] (explore_lite) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[7.273471] (explore_lite) StdoutLine: {'line': b"-- Configured 'flake8' exclude dirs and/or files: \n"}
+[7.274072] (explore_lite) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[7.274825] (explore_lite) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257\n"}
+[7.275840] (explore_lite) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[7.276048] (explore_lite) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[7.278088] (explore_lite) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[7.279736] (explore_lite) StdoutLine: {'line': b'-- Configuring done (1.8s)\n'}
+[7.301571] (explore_lite) StdoutLine: {'line': b'-- Generating done (0.0s)\n'}
+[7.308452] (explore_lite) StdoutLine: {'line': b'-- Build files have been written to: /home/czika-stefania/Documents/DyNAMO/DyNAMO/build/explore_lite\n'}
+[7.314996] (-) TimerEvent: {}
+[7.322951] (explore_lite) CommandEnded: {'returncode': 0}
+[7.323443] (explore_lite) JobProgress: {'identifier': 'explore_lite', 'progress': 'build'}
+[7.323711] (explore_lite) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/explore_lite', '--', '-j20', '-l20'], 'cwd': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/explore_lite', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'czika-stefania', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'XDG_SESSION_TYPE': 'x11', 'CLUTTER_DISABLE_MIPMAPPED_TEXT': '1', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib:/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/czika-stefania', 'OLDPWD': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/src', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'SYSTEMD_EXEC_PID': '2546', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'COLCON_PREFIX_PATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'czika-stefania', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.Shell@x11.service/memory.pressure', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'czika-stefania', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'WINDOWPATH': '2', 'PATH': '/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/czika-stefania-Vivobook-ASUSLaptop-K3605ZC-V3605ZC:@/tmp/.ICE-unix/2466,unix/czika-stefania-Vivobook-ASUSLaptop-K3605ZC-V3605ZC:/tmp/.ICE-unix/2466', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/5890d9fb_49a8_4459_a49d_9c0ceb5ecf7d', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':1', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'GNOME_TERMINAL_SERVICE': ':1.274', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs:/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration:/opt/ros/jazzy', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/explore_lite', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages:/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'VTE_VERSION': '7600', 'CMAKE_PREFIX_PATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration:/opt/ros/jazzy'}), 'shell': False}
+[7.381758] (explore_lite) StdoutLine: {'line': b'[ 10%] \x1b[32mBuilding CXX object CMakeFiles/explore.dir/src/explore.cpp.o\x1b[0m\n'}
+[7.385586] (explore_lite) StdoutLine: {'line': b'[ 30%] \x1b[32mBuilding CXX object CMakeFiles/explore.dir/src/costmap_client.cpp.o\x1b[0m\n'}
+[7.385908] (explore_lite) StdoutLine: {'line': b'[ 30%] \x1b[32mBuilding CXX object CMakeFiles/explore.dir/src/frontier_search.cpp.o\x1b[0m\n'}
+[7.388026] (explore_lite) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding CXX object gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o\x1b[0m\n'}
+[7.388462] (explore_lite) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o\x1b[0m\n'}
+[7.415117] (-) TimerEvent: {}
+[7.515473] (-) TimerEvent: {}
+[7.615777] (-) TimerEvent: {}
+[7.716121] (-) TimerEvent: {}
+[7.816473] (-) TimerEvent: {}
+[7.916861] (-) TimerEvent: {}
+[8.017348] (-) TimerEvent: {}
+[8.019182] (explore_lite) StdoutLine: {'line': b'[ 60%] \x1b[32m\x1b[1mLinking CXX static library libgtest_main.a\x1b[0m\n'}
+[8.066394] (explore_lite) StdoutLine: {'line': b'[ 60%] Built target gtest_main\n'}
+[8.117484] (-) TimerEvent: {}
+[8.217756] (-) TimerEvent: {}
+[8.318074] (-) TimerEvent: {}
+[8.418369] (-) TimerEvent: {}
+[8.518772] (-) TimerEvent: {}
+[8.619158] (-) TimerEvent: {}
+[8.719440] (-) TimerEvent: {}
+[8.819763] (-) TimerEvent: {}
+[8.920387] (-) TimerEvent: {}
+[9.020764] (-) TimerEvent: {}
+[9.121248] (-) TimerEvent: {}
+[9.221648] (-) TimerEvent: {}
+[9.321997] (-) TimerEvent: {}
+[9.422309] (-) TimerEvent: {}
+[9.522625] (-) TimerEvent: {}
+[9.623067] (-) TimerEvent: {}
+[9.723562] (-) TimerEvent: {}
+[9.823942] (-) TimerEvent: {}
+[9.924297] (-) TimerEvent: {}
+[10.024686] (-) TimerEvent: {}
+[10.125086] (-) TimerEvent: {}
+[10.225750] (-) TimerEvent: {}
+[10.326187] (-) TimerEvent: {}
+[10.426531] (-) TimerEvent: {}
+[10.526851] (-) TimerEvent: {}
+[10.627180] (-) TimerEvent: {}
+[10.727537] (-) TimerEvent: {}
+[10.743733] (explore_lite) StdoutLine: {'line': b'[ 70%] \x1b[32m\x1b[1mLinking CXX static library libgtest.a\x1b[0m\n'}
+[10.808029] (explore_lite) StdoutLine: {'line': b'[ 70%] Built target gtest\n'}
+[10.827720] (-) TimerEvent: {}
+[10.837228] (explore_lite) StdoutLine: {'line': b'[ 80%] \x1b[32mBuilding CXX object CMakeFiles/test_explore.dir/test/test_explore.cpp.o\x1b[0m\n'}
+[10.927819] (-) TimerEvent: {}
+[11.028151] (-) TimerEvent: {}
+[11.128562] (-) TimerEvent: {}
+[11.228926] (-) TimerEvent: {}
+[11.329374] (-) TimerEvent: {}
+[11.429798] (-) TimerEvent: {}
+[11.530201] (-) TimerEvent: {}
+[11.630555] (-) TimerEvent: {}
+[11.730945] (-) TimerEvent: {}
+[11.776710] (explore_lite) StdoutLine: {'line': b'[ 90%] \x1b[32m\x1b[1mLinking CXX executable test_explore\x1b[0m\n'}
+[11.831026] (-) TimerEvent: {}
+[11.918658] (explore_lite) StdoutLine: {'line': b'[ 90%] Built target test_explore\n'}
+[11.931205] (-) TimerEvent: {}
+[12.031648] (-) TimerEvent: {}
+[12.131927] (-) TimerEvent: {}
+[12.232273] (-) TimerEvent: {}
+[12.332673] (-) TimerEvent: {}
+[12.433014] (-) TimerEvent: {}
+[12.533289] (-) TimerEvent: {}
+[12.633710] (-) TimerEvent: {}
+[12.734160] (-) TimerEvent: {}
+[12.834550] (-) TimerEvent: {}
+[12.934844] (-) TimerEvent: {}
+[13.035369] (-) TimerEvent: {}
+[13.136016] (-) TimerEvent: {}
+[13.236289] (-) TimerEvent: {}
+[13.336580] (-) TimerEvent: {}
+[13.436858] (-) TimerEvent: {}
+[13.537229] (-) TimerEvent: {}
+[13.637769] (-) TimerEvent: {}
+[13.738273] (-) TimerEvent: {}
+[13.838736] (-) TimerEvent: {}
+[13.939109] (-) TimerEvent: {}
+[14.039429] (-) TimerEvent: {}
+[14.139827] (-) TimerEvent: {}
+[14.240152] (-) TimerEvent: {}
+[14.340445] (-) TimerEvent: {}
+[14.440769] (-) TimerEvent: {}
+[14.541214] (-) TimerEvent: {}
+[14.641507] (-) TimerEvent: {}
+[14.741785] (-) TimerEvent: {}
+[14.842102] (-) TimerEvent: {}
+[14.942386] (-) TimerEvent: {}
+[15.042697] (-) TimerEvent: {}
+[15.143097] (-) TimerEvent: {}
+[15.243508] (-) TimerEvent: {}
+[15.343823] (-) TimerEvent: {}
+[15.444206] (-) TimerEvent: {}
+[15.544615] (-) TimerEvent: {}
+[15.645199] (-) TimerEvent: {}
+[15.745781] (-) TimerEvent: {}
+[15.846298] (-) TimerEvent: {}
+[15.946840] (-) TimerEvent: {}
+[16.047227] (-) TimerEvent: {}
+[16.147537] (-) TimerEvent: {}
+[16.247789] (-) TimerEvent: {}
+[16.348148] (-) TimerEvent: {}
+[16.448557] (-) TimerEvent: {}
+[16.548979] (-) TimerEvent: {}
+[16.649320] (-) TimerEvent: {}
+[16.749816] (-) TimerEvent: {}
+[16.850290] (-) TimerEvent: {}
+[16.950651] (-) TimerEvent: {}
+[17.051069] (-) TimerEvent: {}
+[17.151483] (-) TimerEvent: {}
+[17.251783] (-) TimerEvent: {}
+[17.352029] (-) TimerEvent: {}
+[17.452415] (-) TimerEvent: {}
+[17.552771] (-) TimerEvent: {}
+[17.653219] (-) TimerEvent: {}
+[17.753622] (-) TimerEvent: {}
+[17.853920] (-) TimerEvent: {}
+[17.954185] (-) TimerEvent: {}
+[18.054723] (-) TimerEvent: {}
+[18.155134] (-) TimerEvent: {}
+[18.255433] (-) TimerEvent: {}
+[18.355930] (-) TimerEvent: {}
+[18.456422] (-) TimerEvent: {}
+[18.556730] (-) TimerEvent: {}
+[18.657122] (-) TimerEvent: {}
+[18.757444] (-) TimerEvent: {}
+[18.857915] (-) TimerEvent: {}
+[18.958296] (-) TimerEvent: {}
+[19.058643] (-) TimerEvent: {}
+[19.158982] (-) TimerEvent: {}
+[19.259461] (-) TimerEvent: {}
+[19.359807] (-) TimerEvent: {}
+[19.460305] (-) TimerEvent: {}
+[19.560731] (-) TimerEvent: {}
+[19.661032] (-) TimerEvent: {}
+[19.761426] (-) TimerEvent: {}
+[19.861860] (-) TimerEvent: {}
+[19.962298] (-) TimerEvent: {}
+[20.062658] (-) TimerEvent: {}
+[20.163170] (-) TimerEvent: {}
+[20.263905] (-) TimerEvent: {}
+[20.343364] (explore_lite) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable explore\x1b[0m\n'}
+[20.364017] (-) TimerEvent: {}
+[20.464354] (-) TimerEvent: {}
+[20.564770] (-) TimerEvent: {}
+[20.665203] (-) TimerEvent: {}
+[20.765900] (-) TimerEvent: {}
+[20.866678] (-) TimerEvent: {}
+[20.967641] (-) TimerEvent: {}
+[21.068230] (-) TimerEvent: {}
+[21.168557] (-) TimerEvent: {}
+[21.268880] (-) TimerEvent: {}
+[21.369262] (-) TimerEvent: {}
+[21.442935] (explore_lite) StdoutLine: {'line': b'[100%] Built target explore\n'}
+[21.454067] (explore_lite) CommandEnded: {'returncode': 0}
+[21.454684] (explore_lite) JobProgress: {'identifier': 'explore_lite', 'progress': 'install'}
+[21.455099] (explore_lite) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/explore_lite'], 'cwd': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/explore_lite', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'czika-stefania', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'XDG_SESSION_TYPE': 'x11', 'CLUTTER_DISABLE_MIPMAPPED_TEXT': '1', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib:/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/czika-stefania', 'OLDPWD': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/src', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'SYSTEMD_EXEC_PID': '2546', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'COLCON_PREFIX_PATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'czika-stefania', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.Shell@x11.service/memory.pressure', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'czika-stefania', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'WINDOWPATH': '2', 'PATH': '/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/czika-stefania-Vivobook-ASUSLaptop-K3605ZC-V3605ZC:@/tmp/.ICE-unix/2466,unix/czika-stefania-Vivobook-ASUSLaptop-K3605ZC-V3605ZC:/tmp/.ICE-unix/2466', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/5890d9fb_49a8_4459_a49d_9c0ceb5ecf7d', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':1', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'GNOME_TERMINAL_SERVICE': ':1.274', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs:/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration:/opt/ros/jazzy', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/explore_lite', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs/lib/python3.12/site-packages:/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'VTE_VERSION': '7600', 'CMAKE_PREFIX_PATH': '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite_msgs:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration:/opt/ros/jazzy'}), 'shell': False}
+[21.463467] (explore_lite) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[21.463665] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/include/explore/\n'}
+[21.463724] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/include/explore//costmap_tools.h\n'}
+[21.463775] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/include/explore//explore.h\n'}
+[21.463820] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/include/explore//costmap_client.h\n'}
+[21.463888] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/include/explore//frontier_search.h\n'}
+[21.463970] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/explore_lite/config\n'}
+[21.464104] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/explore_lite/config/params.yaml\n'}
+[21.464176] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/explore_lite/config/params_costmap.yaml\n'}
+[21.464236] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/explore_lite/launch\n'}
+[21.464297] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/explore_lite/launch/explore.launch.py\n'}
+[21.464349] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/lib/explore_lite/explore\n'}
+[21.469362] (-) TimerEvent: {}
+[21.470920] (explore_lite) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/lib/explore_lite/explore" to ""\n'}
+[21.471045] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/ament_index/resource_index/package_run_dependencies/explore_lite\n'}
+[21.471106] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/ament_index/resource_index/parent_prefix_path/explore_lite\n'}
+[21.471171] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/explore_lite/environment/ament_prefix_path.sh\n'}
+[21.471214] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/explore_lite/environment/ament_prefix_path.dsv\n'}
+[21.471275] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/explore_lite/environment/path.sh\n'}
+[21.471319] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/explore_lite/environment/path.dsv\n'}
+[21.471366] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/explore_lite/local_setup.bash\n'}
+[21.471413] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/explore_lite/local_setup.sh\n'}
+[21.471458] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/explore_lite/local_setup.zsh\n'}
+[21.471502] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/explore_lite/local_setup.dsv\n'}
+[21.471547] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/explore_lite/package.dsv\n'}
+[21.471591] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/ament_index/resource_index/packages/explore_lite\n'}
+[21.471636] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/explore_lite/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[21.471683] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/explore_lite/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[21.471731] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/explore_lite/cmake/explore_liteConfig.cmake\n'}
+[21.471772] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/explore_lite/cmake/explore_liteConfig-version.cmake\n'}
+[21.471814] (explore_lite) StdoutLine: {'line': b'-- Installing: /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/explore_lite/share/explore_lite/package.xml\n'}
+[21.477307] (explore_lite) CommandEnded: {'returncode': 0}
+[21.487047] (explore_lite) JobEnded: {'identifier': 'explore_lite', 'rc': 0}
+[21.487783] (-) EventReactorShutdown: {}

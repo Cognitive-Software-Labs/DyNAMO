@@ -1,0 +1,21 @@
+explore_node:
+  ros__parameters:
+    # 1. Coordinate Frames
+    robot_base_frame: "base_link"
+    
+    # 2. Map Topics (SCHIMBAT CATRE GLOBAL COSTMAP PENTRU COMPATIBILITATEA MESAJELOR)
+    costmap_topic: "/global_costmap/costmap"
+    costmap_updates_topic: "/global_costmap/costmap_updates"
+    
+    # 3. Exploration Tuning for Ridgeback
+    visualize: true              # Publishes markers for RViz
+    planner_frequency: 0.5       # How often it searches for new frontiers (Hz)
+    progress_timeout: 30.0       # If robot doesn't move for 30s, pick a new frontier
+    potential_scale: 3.0         # Weight for distance (higher = prefers closer frontiers)
+    orientation_scale: 0.0       # Weight for orientation (usually 0)
+    gain_scale: 1.0              # Weight for frontier size (higher = prefers larger open areas)
+    transform_tolerance: 0.3
+    
+    # CRITICAL FOR RIDGEBACK: Minimum size of a frontier (in meters) to consider it valid.
+    # Setat la 1.5m pentru ca robotul sa nu incerce sa intre in spatii prea stramte.
+    min_frontier_size: 1.5

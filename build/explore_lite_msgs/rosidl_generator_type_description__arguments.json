@@ -1,0 +1,7 @@
+{
+  "package_name": "explore_lite_msgs",
+  "output_dir": "/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/explore_lite_msgs/rosidl_generator_type_description/explore_lite_msgs",
+  "idl_tuples": [
+    "/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/explore_lite_msgs/rosidl_adapter/explore_lite_msgs:msg/ExploreStatus.idl"
+  ]
+}

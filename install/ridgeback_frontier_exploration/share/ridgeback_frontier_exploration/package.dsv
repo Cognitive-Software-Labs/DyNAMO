@@ -1,0 +1,6 @@
+source;share/ridgeback_frontier_exploration/hook/pythonpath.ps1
+source;share/ridgeback_frontier_exploration/hook/pythonpath.dsv
+source;share/ridgeback_frontier_exploration/hook/pythonpath.sh
+source;share/ridgeback_frontier_exploration/hook/ament_prefix_path.ps1
+source;share/ridgeback_frontier_exploration/hook/ament_prefix_path.dsv
+source;share/ridgeback_frontier_exploration/hook/ament_prefix_path.sh

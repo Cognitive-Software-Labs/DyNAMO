@@ -1,4 +1,0 @@
-[console_scripts]
-detector = ridgeback_vision_detection.detector:main
-odom_tf_pub = ridgeback_vision_detection.odom_tf_pub:main
-test_pub = ridgeback_vision_detection.test_pub:main

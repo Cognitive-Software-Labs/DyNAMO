@@ -1,0 +1,30 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from explore_lite_msgs/msg/ExploreStatus.msg
+// generated code does not contain a copyright notice
+
+
+module explore_lite_msgs {
+  module msg {
+    module ExploreStatus_Constants {
+      const string EXPLORATION_STARTED = "exploration_started";
+      const string EXPLORATION_IN_PROGRESS = "exploration_in_progress";
+      const string EXPLORATION_PAUSED = "exploration_paused";
+      const string EXPLORATION_COMPLETE = "exploration_complete";
+      const string RETURNING_TO_ORIGIN = "returning_to_origin";
+      const string RETURNED_TO_ORIGIN = "returned_to_origin";
+    };
+    @verbatim (language="comment", text=
+      "Exploration status constants" "\n"
+      "EXPLORATION_STARTED: Exploration has begun (published on initialization)" "\n"
+      "EXPLORATION_IN_PROGRESS: Exploration resumed after pause" "\n"
+      "EXPLORATION_PAUSED: Exploration manually stopped via /explore/resume topic" "\n"
+      "EXPLORATION_COMPLETE: No frontiers remaining, exploration finished" "\n"
+      "RETURNING_TO_ORIGIN: Robot navigating back to initial pose (if return_to_init: true)" "\n"
+      "RETURNED_TO_ORIGIN: Robot successfully reached initial pose")
+    struct ExploreStatus {
+      @verbatim (language="comment", text=
+        "Current exploration status")
+      string status;
+    };
+  };
+};

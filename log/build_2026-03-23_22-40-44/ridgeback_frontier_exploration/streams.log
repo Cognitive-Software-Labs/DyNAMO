@@ -1,0 +1,22 @@
+[0.446s] Invoking command in '/home/czika-stefania/Documents/DyNAMO/DyNAMO/src/ridgeback_frontier_exploration': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/ridgeback_frontier_exploration/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/ridgeback_frontier_exploration build --build-base /home/czika-stefania/Documents/DyNAMO/DyNAMO/build/ridgeback_frontier_exploration/build install --record /home/czika-stefania/Documents/DyNAMO/DyNAMO/build/ridgeback_frontier_exploration/install.log --single-version-externally-managed install_data
+[0.595s] running egg_info
+[0.606s] writing ../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/PKG-INFO
+[0.606s] writing dependency_links to ../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/dependency_links.txt
+[0.606s] writing entry points to ../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/entry_points.txt
+[0.606s] writing requirements to ../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/requires.txt
+[0.606s] writing top-level names to ../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/top_level.txt
+[0.627s] reading manifest file '../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/SOURCES.txt'
+[0.628s] writing manifest file '../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info/SOURCES.txt'
+[0.628s] running build
+[0.628s] running build_py
+[0.629s] running install
+[0.632s] running install_lib
+[0.643s] running install_data
+[0.643s] copying launch/sim_base_launch.py -> /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/share/ridgeback_frontier_exploration/launch
+[0.644s] running install_egg_info
+[0.655s] removing '/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/lib/python3.12/site-packages/ridgeback_frontier_exploration-0.0.0-py3.12.egg-info' (and everything under it)
+[0.655s] Copying ../../build/ridgeback_frontier_exploration/ridgeback_frontier_exploration.egg-info to /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/lib/python3.12/site-packages/ridgeback_frontier_exploration-0.0.0-py3.12.egg-info
+[0.655s] running install_scripts
+[0.728s] Installing odom_tf_pub script to /home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/lib/ridgeback_frontier_exploration
+[0.728s] writing list of installed files to '/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/ridgeback_frontier_exploration/install.log'
+[0.743s] Invoked command in '/home/czika-stefania/Documents/DyNAMO/DyNAMO/src/ridgeback_frontier_exploration' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/czika-stefania/Documents/DyNAMO/DyNAMO/build/ridgeback_frontier_exploration/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/czika-stefania/Documents/DyNAMO/DyNAMO/install/ridgeback_frontier_exploration/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/ridgeback_frontier_exploration build --build-base /home/czika-stefania/Documents/DyNAMO/DyNAMO/build/ridgeback_frontier_exploration/build install --record /home/czika-stefania/Documents/DyNAMO/DyNAMO/build/ridgeback_frontier_exploration/install.log --single-version-externally-managed install_data

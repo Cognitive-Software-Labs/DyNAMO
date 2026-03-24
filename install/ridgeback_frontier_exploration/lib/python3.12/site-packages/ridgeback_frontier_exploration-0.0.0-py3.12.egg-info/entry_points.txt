@@ -1,0 +1,2 @@
+[console_scripts]
+odom_tf_pub = ridgeback_frontier_exploration.odom_tf_pub:main
