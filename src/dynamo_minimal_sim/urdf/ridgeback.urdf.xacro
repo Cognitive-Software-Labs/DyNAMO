@@ -29,6 +29,8 @@
   <material name="yellow"><color rgba="0.8 0.8 0.0 1.0" /></material>
   <material name="black"><color rgba="0.15 0.15 0.15 1.0" /></material>
 
+
+
   <xacro:macro name="wheel" params="prefix side *joint_pose">
     <link name="${prefix}_${side}_wheel_link">
       <visual>
@@ -324,7 +326,11 @@
 
     <!-- Directly include LiDAR sensors for occupancy mapping. -->
   <xacro:include filename="$(find dynamo_minimal_sim)/urdf/lidar_extras.urdf.xacro" />
+  
+  <!-- Include Camera for vision. -->
+  <xacro:include filename="$(find dynamo_minimal_sim)/urdf/camera_extras.urdf.xacro" />
 
 </robot>
+
 
 

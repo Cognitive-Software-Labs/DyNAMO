@@ -30,6 +30,8 @@ setup(
     entry_points={
         "console_scripts": [
             "odom_tf_pub = dynamo_minimal_sim.odom_tf_pub:main",
+            "drive_forward = dynamo_minimal_sim.drive_forward:main",
+            "scan_merger = dynamo_minimal_sim.scan_merger:main",
         ],
     },
 )

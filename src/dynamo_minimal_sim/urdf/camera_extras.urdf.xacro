@@ -18,8 +18,9 @@
   <joint name="d455_joint" type="fixed">
     <parent link="chassis_link"/>
     <child link="d455_link"/>
-    <origin xyz="0.0 0 0.8" rpy="0 0 0"/>
+    <origin xyz="0.35 0.0 0.45" rpy="0 0 0"/>
   </joint>
+
 
   <gazebo reference="d455_link">
     <sensor name="d455_sensor" type="camera">
